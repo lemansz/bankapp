@@ -1,0 +1,557 @@
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Parkinsans:wght@300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Stylish&family=Varela&display=swap');
+body{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 0;
+   font-family: "Roboto", sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   padding: 0 1.25rem;
+   padding-bottom: 0.625rem;
+   
+ }
+ .greet-block{
+    color: green;
+ }
+ .balance-parent{
+    display: inline;
+ }
+ .data-price{
+     display: inline-block;
+    }
+ .account-number{
+    margin-bottom: 0.75rem;
+ }
+ .transaction_history{
+    width: 28.125rem;
+    height: 4.1875rem;
+    overflow: hidden;     
+ }
+
+.amountt{
+    margin-left: 0;
+}
+.data_form{
+    width: 21.875rem;
+}
+
+ .history{
+    background-image: url(history.svg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-align: left;
+    padding: 0.5rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5625rem;
+    border-radius: 2.5rem;
+    background-position: right;
+    width: 4.6875rem;
+    background-color: white;
+    color: white;
+    
+ }
+ .history > a{
+    text-decoration: none;
+    color: black;
+ }
+ 
+ .upper-bar{
+    background-color: rgb(240, 240, 240);
+    padding-left: 0.5rem;
+    border-radius: 0.5rem;
+    padding-bottom: 0.75rem;
+    padding-top: 0.03125rem;
+    
+}
+.operation-parents{
+    display: flex;
+   justify-content: center;
+   gap: 0.625rem;
+   height: 5rem;
+}
+.transfer-button{
+    background-color: rgb(240, 240, 240);
+    display: inline-block;
+    padding: 0.5rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    width: 6.25rem;
+    background-image: url(Assets/transfer.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid hsl(0, 0%, 80%);
+}
+.transfer-button:hover{
+    background-color: hsl(0, 0%, 80%);
+}
+.transfer-button:active{
+    background-color: hsl(116, 49%, 63%);
+}
+.transfer-span{
+    margin-top: 45px;
+    display: inline-block;
+}
+
+.airtime-purchase-button{
+    background-color: rgb(240, 240, 240);
+    display: inline-block;
+    padding: 0.5rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    width: 6.25rem;
+    background-image: url(Assets/mobile-recharge-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid hsl(0, 0%, 80%);
+}
+
+.airtime-purchase-button:hover{
+    background-color: hsl(0, 0%, 80%);
+}
+.airtime-purchase-button:active{
+    background-color: hsl(116, 49%, 63%);
+}
+.airtime-span{
+    margin-top: 46px;
+    display: inline-block;
+}
+
+.data-button{
+   background-color: rgb(240, 240, 240);
+   display: inline-block;
+   padding: 0.5rem;
+   border: none;
+   margin-bottom: 0.5rem;
+   border-radius: 0.5rem;
+   width: 6.25rem;
+   background-image: url(Assets/mobile-data-icon.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+   border: 1px solid hsl(0, 0%, 80%);
+}
+.data-button:hover{
+    background-color: hsl(0, 0%, 80%);
+}
+.data-button:active{
+    background-color: hsl(116, 49%, 63%);
+}
+.data-span{
+    margin-top: 46px;
+    display: inline-block;
+}
+.form-operation-parent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.transfer_form{
+    display: none;
+    border-radius: 0.75rem;
+    background-color: rgb(240, 240, 240);
+    padding-top: 0.9rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 21.875rem;
+    min-width: 21.875rem;
+}
+.recipient{
+    margin-left: 1.25rem;
+}
+#pin{
+    width: 3.125rem;
+}
+.transfer_form > input{
+    margin-left: 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;
+    margin-top: 0.5rem;
+    background-color: white;
+    transition: background-color 0.5s ease-in-out;
+}
+
+
+
+
+.transfer_form > .send-transfer{
+    background-color : hsl(0, 0.00%, 99.60%);
+    color : rgb(145, 167, 151);
+}
+
+.transfer-inputs > input{
+    margin-left: 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;  
+}
+
+.airtime_form{
+    display: none;
+    border-radius: 0.75rem;
+    background-color: rgb(240, 240, 240);
+    padding-top: 0.5rem;
+    padding-left: 1.25rem;
+    
+}
+.airtime-provider {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+}
+
+.select-selected {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select-provider {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 99;
+    width: 100%;
+    
+}
+
+.select-provider div {
+    padding: 10px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px 20px;
+    padding-right: 30px; /* Adjust padding to make space for the icon */
+}
+
+.select-provider div:hover {
+    background-color: #ddd;
+}
+
+.select-provider div[data-value="MTN"] {
+    background-image: url('Assets/mtn-logo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-provider div[data-value="Glo"] {
+    background-image: url('Assets/glo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-provider div[data-value="Airtel"] {
+    background-image: url('Assets/Airtel_logo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+.select-provider div[data-value="9mobile"] {
+    background-image: url('Assets/9mobile.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-hide {
+    display: none;
+}
+
+.select-show {
+    display: block;
+}
+.airtime-provider{
+    border-radius: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+.airtime-price{
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+   /* justify-content: center; */
+}
+.airtime-price > input{
+    height: 3.125rem;
+    width: 20.33%;
+    max-width: 20.33%;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(0, 0%, 80%);
+}
+.airtime-price > input:hover{
+    background-color: hsl(0, 0%, 80%);
+}
+.airtime_form > input{
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;
+    background-color: white;
+    transition: background-color 0.5s ease-in-out;
+    margin-right: 1.25rem;
+}
+.airtime-pin{
+    text-align: center;
+    width: 1.875rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;
+    /* margin-top: 0.2rem; */
+    background-color: white;
+}
+.buy-airtime{
+    background-color: hsl(0, 0%, 99.60%);
+    color: rgb(145, 167, 151);
+    
+}
+
+@media screen and (max-width:480px) {
+    .upper-bar{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 0 0 0.5rem 0.5rem;
+        
+    }
+    body{
+        padding: 0;
+        margin: 0;
+        align-items: center;
+    }
+
+    .balance-parent{
+        margin: 0;
+    }
+    
+ }
+
+ .data_form{
+    display: none;
+    border-radius: 0.75rem;
+    background-color: rgb(240, 240, 240);
+    padding-top: 0.5rem;
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+ }
+
+ .data_form > input{
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;
+    background-color: white;
+    transition: background-color 0.5s ease-in-out;
+    margin-right: 1.25rem;
+ }
+ 
+.data-provider {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+}
+
+.select-selected-data {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select-data-provider {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 99;
+    width: 100%;
+    
+}
+
+.select-data-provider div {
+    padding: 10px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px 20px;
+    padding-right: 30px;
+}
+
+.select-data-provider div:hover {
+    background-color: #ddd;
+}
+
+.select-data-provider div[data-value="MTN"] {
+    background-image: url('Assets/mtn-logo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-data-provider div[data-value="Glo"] {
+    background-image: url('Assets/glo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-data-provider div[data-value="Airtel"] {
+    background-image: url('Assets/Airtel_logo.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+.select-data-provider div[data-value="9mobile"] {
+    background-image: url('Assets/9mobile.svg');
+    background-size: contain;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.select-data-hide {
+    display: none;
+}
+
+.select-show {
+    display: block;
+}
+.data-provider{
+    /* padding: 0.5rem; */
+    border-radius: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    /* border: 1px solid hsl(0, 0%, 80%); */
+    margin-top: 0.5rem;
+}
+
+
+ .log-out{
+    margin-left: auto;
+    margin-right: 0.9375rem;
+    margin-top: 0.9375rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-image: url(Assets/log-out.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.log-out > a{
+    padding: 0.5rem;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+ }
+.data-pin{
+    width: 2.1875rem;
+}
+
+
+
+
+
+.data-price{
+    font-size:large;
+}
+.data_form{
+    width: 15rem;
+    display: none;
+}
+.data-bundle-container{
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 15rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid hsl(0, 0%, 80%);
+}
+.btn{
+    display: inline-block;
+    height: 3.75rem;
+    margin: 0.5rem;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+
+    /* border: 1px solid hsl(0, 0%, 51%); */
+    border-left: 3px solid green;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.btn:hover{
+    background-color: hsl(0, 0%, 80%);
+}
+.btn:active{
+    background-color: hsl(116, 49%, 63%);
+}
+
+input{
+    padding: 0.625rem;
+}
+.pin{
+    width: 2.1875rem;
+}
+
+.cancel{
+    padding: 0.625rem;
+}
+.transaction-message{
+    width: 18.75rem;
+    height: 6.25rem;
+    border: 1px solid black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 128, 0, 0.153);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dismiss-button{
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.75rem;
+    font-size: large;
+    background-color: white;
+    margin-right: 1.25rem;
+    display: inline-block;
+}
+
+
+.transfer-pin{
+    text-align: center;
+    width: 1.875rem;
+}
+.data-pin{
+    text-align: center;
+    width: 1.875rem;
+}
