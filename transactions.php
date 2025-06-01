@@ -21,6 +21,46 @@ class Transactions
    public $beneficiary_phone_no;
    public $transaction_date;
 
+
+   public function record_deposit ()
+   {
+      global $conn;
+
+      $sql = "INSERT INTO transactions(beneficiary_id,
+      transaction_amount,
+      beneficiary_name,
+      beneficiary_account_no,
+      transaction_type,
+      transaction_date)
+      VALUES(?,?,?,?,?,?)
+      ";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ssssss", $this->beneficiary_id, $this->transaction_amount, $this->beneficiary_name, $this->beneficiary_account_no, $this->transaction_type, $this->transaction_date);
+      $stmt->execute();
+      $stmt->close();
+      
+   }
+   public function record_withdraw ()
+   {
+      global $conn;
+
+      $sql = "INSERT INTO transactions(beneficiary_id,
+      transaction_amount,
+      beneficiary_name,
+      beneficiary_account_no,
+      transaction_type,
+      transaction_date)
+      VALUES(?,?,?,?,?,?)
+      ";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ssssss", $this->beneficiary_id, $this->transaction_amount, $this->beneficiary_name, $this->beneficiary_account_no, $this->transaction_type, $this->transaction_date);
+      $stmt->execute();
+      $stmt->close();
+      
+   }
+
    public function record_transfer()
    {
        global $conn;
@@ -50,14 +90,16 @@ class Transactions
     
     $sql = "INSERT INTO transactions (sender_id,
     transaction_amount,
-    transaction_type, 
+    sender_name,
+    sender_account_no,
+    transaction_type,
     network_provider,
     beneficiary_phone_no,
     transaction_date)
-    VALUES (?,?,?,?,?,?)
+    VALUES (?,?,?,?,?,?,?,?)
     ";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $this->sender_id,$this->transaction_amount,$this->transaction_type,$this->network_provider, $this->beneficiary_phone_no,$this->transaction_date);
+    $stmt->bind_param("ssssssss", $this->sender_id, $this->transaction_amount, $this->sender_name, $this->sender_account_no, $this->transaction_type,$this->network_provider, $this->beneficiary_phone_no,$this->transaction_date);
     $stmt->execute();
     $stmt->close();
    } 
@@ -68,17 +110,19 @@ class Transactions
     global $conn;
     $sql = "INSERT INTO transactions (sender_id,
     transaction_amount, 
+    sender_name,
+    sender_account_no,
     transaction_type, 
     network_provider,
     data_bundle,
     beneficiary_phone_no,
     transaction_date)
-    VALUES (?,?,?,?,?,?,?)
+    VALUES (?,?,?,?,?,?,?,?,?)
     ";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssss", $this->sender_id,$this->transaction_amount,$this->transaction_type,$this->network_provider,$this->data_bundle,$this->beneficiary_phone_no,$this->transaction_date);
+    $stmt->bind_param("sssssssss", $this->sender_id,$this->transaction_amount, $this->sender_name, $this->sender_account_no, $this->transaction_type,$this->network_provider,$this->data_bundle,$this->beneficiary_phone_no,$this->transaction_date);
     $stmt->execute();
     $stmt->close();
-   }    
+   } 
 }
 ?>

@@ -8,35 +8,35 @@
  if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $data_provider = clean_input($_POST['data-provider']);
     $data_phone_no = clean_input($_POST['data-phone-number']);
-    $data_plan_amount = clean_input($_POST['data-plan-amount']);
+    $data_plan_amount = str_replace((","), "",clean_input($_POST['data-plan-amount']));
     $data_bundle = clean_input($_POST['data-bundle']);
-
-    if (isset($data_provider)){
-        $data_provider = filter_var($data_provider, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $user_blance = clean_input($_POST['user-balance-data']);
+    
+    if (empty($data_provider)){
+        die ("Data provider required.");
     }
 
-    if (isset($data_phone_no)){
-        $data_phone_no = filter_var($data_phone_no, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    if (empty($data_phone_no)){
+        die ("Phone number required.");
+    } else if (!preg_match('/\d{11}$/', $data_phone_no)){
+        die ("Invalid phone number.");
     }
     
-    if (isset($data_plan_amount)){
-        $data_plan_amount = filter_var($data_plan_amount, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $data_plan_amount = str_replace((","), "", $data_plan_amount);
+    if (empty($data_plan_amount)){
+        die ("Amount cannot be empty.");
+    } else if ($data_plan_amount > $user_blance){
+        die ("Insufficient funds.");
     }
 
-    if (isset($data_bundle)){
-        $data_bundle = filter_var($data_bundle, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    if (empty($data_bundle)){
+        die ("Data bundle cannot be empty");
     }
  }
  
 
   
  function clean_input($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
-
-    return $data;
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
  }
 
  $data_sql = "SELECT * FROM bank_user_data WHERE id = ?";
@@ -49,18 +49,19 @@
  $data = new Transactions;
  $data->sender_id = $data_buyer_id;
  $data->transaction_amount = $data_plan_amount;
+ $data->sender_name = $data_buyer['surname'] . " " . $data_buyer['first_name'];
+ $data->sender_account_no = $data_buyer['account_number'];
  $data->transaction_type = "Data";
  $data->network_provider = $data_provider;
  $data->data_bundle = $data_bundle;
  $data->beneficiary_phone_no = $data_phone_no;
  $data->transaction_date = $day;
 
- $data->record_data_transaction();
-
-
-
+ 
+ 
+ 
  $data_buyer_balance = floatval($data_buyer['account_balance']);
-
+ 
  $newBalance = $data_buyer_balance - $data_plan_amount;
  
  
@@ -69,9 +70,11 @@
  $update_data_buyer_stmt = $conn->prepare($update_data_buyer_sql);
  $update_data_buyer_stmt->bind_param("si", $newBalance,$data_buyer_id);
  $update_data_buyer_stmt->execute();
-
+ 
  if ($update_data_buyer_stmt->affected_rows > 0){
-    header("Location: index.php?message=data purchase successful");
+    $data->record_data_transaction();
+    session_regenerate_id(true);  
+    header("Location: index.php?message= Purchase of $data_bundle data bundle for $data_provider was successful!");
     exit;
  }
  $update_data_buyer_stmt->close();

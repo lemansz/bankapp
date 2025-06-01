@@ -7,13 +7,25 @@ body{
    font-family: "Roboto", sans-serif;
    font-optical-sizing: auto;
    font-style: normal;
-   width: 100%;
-   height: 100%;
+   width: 100vw;
+   /* height: 100vh; */
    box-sizing: border-box;
    padding: 0 1.25rem;
    padding-bottom: 0.625rem;
+   overflow: hidden;
+   overflow-y: visible;
    
  }
+
+ .logo-box{
+    height: 100px;
+    background-image: url('./Assets/bank-logo-index.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1rem;
+    min-width: 100%;
+}
+ 
  .greet-block{
     color: green;
  }
@@ -40,7 +52,7 @@ body{
 }
 
  .history{
-    background-image: url(history.svg);
+    background-image: url(Assets/history.svg);
     background-repeat: no-repeat;
     display: inline-block;
     text-align: left;
@@ -86,12 +98,13 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     border: 1px solid hsl(0, 0%, 80%);
+    cursor: pointer;
 }
 .transfer-button:hover{
-    background-color: hsl(0, 0%, 80%);
+    border-color: #333;
 }
 .transfer-button:active{
-    background-color: hsl(116, 49%, 63%);
+    background-color: #79cf72;
 }
 .transfer-span{
     margin-top: 45px;
@@ -110,10 +123,11 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     border: 1px solid hsl(0, 0%, 80%);
+    cursor: pointer;
 }
 
 .airtime-purchase-button:hover{
-    background-color: hsl(0, 0%, 80%);
+    border-color: #333;
 }
 .airtime-purchase-button:active{
     background-color: hsl(116, 49%, 63%);
@@ -135,9 +149,10 @@ body{
    background-position: center;
    background-repeat: no-repeat;
    border: 1px solid hsl(0, 0%, 80%);
+   cursor: pointer;
 }
 .data-button:hover{
-    background-color: hsl(0, 0%, 80%);
+    border-color: #333;
 }
 .data-button:active{
     background-color: hsl(116, 49%, 63%);
@@ -163,6 +178,7 @@ body{
     padding-bottom: 0.5rem;
     width: 21.875rem;
     min-width: 21.875rem;
+    margin-bottom: 0.5rem;
 }
 .recipient{
     margin-left: 1.25rem;
@@ -203,6 +219,9 @@ body{
     background-color: rgb(240, 240, 240);
     padding-top: 0.5rem;
     padding-left: 1.25rem;
+    width: 72%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     
 }
 .airtime-provider {
@@ -236,7 +255,7 @@ body{
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 20px 20px;
-    padding-right: 30px; /* Adjust padding to make space for the icon */
+    padding-right: 30px; 
 }
 
 .select-provider div:hover {
@@ -326,28 +345,6 @@ body{
     
 }
 
-@media screen and (max-width:480px) {
-    .upper-bar{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin: 0;
-        overflow: hidden;
-        border-radius: 0 0 0.5rem 0.5rem;
-        
-    }
-    body{
-        padding: 0;
-        margin: 0;
-        align-items: center;
-    }
-
-    .balance-parent{
-        margin: 0;
-    }
-    
- }
-
  .data_form{
     display: none;
     border-radius: 0.75rem;
@@ -355,6 +352,7 @@ body{
     padding-top: 0.5rem;
     padding-left: 1.25rem;
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
  }
 
  .data_form > input{
@@ -440,21 +438,16 @@ body{
     display: block;
 }
 .data-provider{
-    /* padding: 0.5rem; */
     border-radius: 0.5rem;
     border: none;
     border-radius: 0.5rem;
-    /* border: 1px solid hsl(0, 0%, 80%); */
     margin-top: 0.5rem;
 }
 
 
  .log-out{
-    margin-left: auto;
-    margin-right: 0.9375rem;
+    float: right;
     margin-top: 0.9375rem;
-    border: none;
-    border-radius: 0.5rem;
     width: 3rem;
     height: 3rem;
     background-image: url(Assets/log-out.svg);
@@ -524,28 +517,38 @@ input{
     padding: 0.625rem;
 }
 .transaction-message{
-    width: 18.75rem;
+    width: 20.75rem;
     height: 6.25rem;
-    border: 1px solid black;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: none;
+    border-radius: 0.5rem;
     background-color: rgba(0, 128, 0, 0.153);
     margin-left: auto;
     margin-right: auto;
+    padding-top: 0.6rem;
+    padding-bottom: 1rem;
+}
+
+.transaction-message p {
+    text-align: center;
 }
 
 .dismiss-button{
     border-radius: 0.5rem;
-    border: none;
-    padding: 0.75rem;
+    border: 1px solid hsl(0, 0%, 80%);
+    padding: 0.60rem;
     font-size: large;
     background-color: white;
-    margin-right: 1.25rem;
-    display: inline-block;
+    float: right;
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
 
+.dismiss-button:hover{
+    border-color: #333;
+}
+.dismiss-button:active{
+   background-color: hsl(116, 49%, 63%);
+}
 
 .transfer-pin{
     text-align: center;
@@ -555,3 +558,78 @@ input{
     text-align: center;
     width: 1.875rem;
 }
+
+
+@media (max-width: 480px){
+
+.logo-box{
+   background-position: 65%;
+}
+
+.upper-bar{
+    padding-left: 8rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin-left: 1rem;
+}
+.greet-block{
+    margin-left: 8rem;
+}
+.operation-parents{
+    display: flex;
+    gap: 0.625rem;
+    height: 5rem;
+    padding-left: 7.5rem;
+    
+}
+.transfer_form{
+    margin-left: 7.5rem;
+}
+.airtime_form{
+    margin-left: 7.5rem;
+    max-width: 55.5%;
+}
+.data_form{
+    margin-left: 7.5rem;
+    max-width: 55.5%;
+}
+.transaction-message{
+    margin-right: 5rem;
+}
+}
+
+.login-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(25, 204, 25);
+}
+
+.btn-s{
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+

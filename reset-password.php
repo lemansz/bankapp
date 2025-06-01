@@ -5,7 +5,7 @@
 
  require __DIR__ . '/db.php';
 
- $sql = "SELECT * FROM bank_user_data WHERE reset_token_hashed = ?";
+ $sql = "SELECT * FROM bank_user_data WHERE reset_token_hash = ?";
 
  $stmt = $conn->prepare($sql);
 
@@ -33,17 +33,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reset password</title>
+    <link rel="shortcut icon" href="Assets/bank-logo-index.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Parkinsans:wght@300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Stylish&family=Varela&display=swap');
+
 body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    box-sizing: border-box;
 }
 form{
-    width: 300px;
+    width: 18rem;
+    margin-top: 12rem;
+    background-color: rgb(240, 240, 240);
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    border-radius: 8px;
 }
 input{
     padding: 1rem;
@@ -66,12 +78,20 @@ input:hover{
     font-weight: 400;
     font-style: normal;
 }
+
 #submit{
-    font-family: "Roboto", serif;
-    font-weight: 400;
-    font-style: normal;
-    width: 100px;
+font-family: "Roboto", serif;
+font-weight: 400;
+font-style: normal;
+width: 100px;
+transition: background-color 0.5s ease-in-out;
 }
+
+#submit:active{
+    background-color: green;
+    color: white;
+}
+
 .error-message{
     color: red;
 }
@@ -88,30 +108,27 @@ input:hover{
 </style>
 </head>
 <body>
-    
+<form method="post" action="process-reset-password.php" id="resetPasswordForm">
+    <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+    <h3>New Password</h3>
+    <label for="password">
+    <input type="password" placeholder="Password" id="password" name="password" class="passwordInput">
+    <i id="togglePassword" class="fa fa-eye password-icon"></i>
+    <br>
+    <span class="error-message" id="passwordError"></span>
+    </label>
+    <br>
+    <label for="confirmPassword">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+    <i id="toggleConfirmPassword" class="fa fa-eye confirm-password-icon"></i>
+    <br>
+    <span class="error-message" id="confirmPasswordError"></span>
+    <br>
+    </label>
+    <input type="submit" id="submit" value="Change">
+</form>
 
-    <form method="post" action="process-reset-password.php" id="resetPasswordForm">
-        <fieldset>
-        <legend>New Password</legend>
-            <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-    
-            <label for="password">
-            <input type="password" placeholder="Password" id="password" name="password" class="passwordInput">
-            <i id="togglePassword" class="fa fa-eye password-icon"></i>
-            <br>
-            <span class="error-message" id="passwordError"></span>
-            </label>
-            <br>
-            <label for="confirmPassword">
-            <input type="password" id="confirmPassword" placeholder="Confirm Password">
-            <i id="toggleConfirmPassword" class="fa fa-eye confirm-password-icon"></i>
-            <br>
-            <span class="error-message" id="confirmPasswordError"></span>
-            <br>
-            </label>
-            <input type="submit" id="submit" value="Change">
-        </fieldset>
-    </form>
+
 <script>
 const togglePassword = document.querySelector('#togglePassword');
 const password = document.querySelector('#password');

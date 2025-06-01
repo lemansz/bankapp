@@ -1,22 +1,21 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $mail = new PHPMailer(true);
 
-// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+try {
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = $_ENV["EMAIL_SENDER"];
+    $mail->Password = $_ENV["EMAIL_PASSWORD"];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = $_ENV["EMAIL_PORT"];
 
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
-$mail->SMTPAuth = true;
-$mail->Username = $_ENV["EMAIL_SENDER"];
-$mail->Password = $_ENV["EMAIL_PASSWORD"];
-$mail->SMTPSecure = 'ssl';
-$mail->Port = $_ENV["EMAIL_PORT"];
-
-$mail->isHTML(true);
-
-return $mail;
+    $mail->setFrom($_ENV["EMAIL_SENDER"], 'Your Name');
+} catch (Exception $e) {
+    echo "Mailer configuration error: {$mail->ErrorInfo}";
+}

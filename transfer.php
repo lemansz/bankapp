@@ -5,36 +5,43 @@
  require __DIR__ . "/transactions.php";
 
  $sender_id = $_SESSION['user_id'];
- 
+
  if ($_SERVER["REQUEST_METHOD"] === "POST"){
+
     $recipient = clean_input($_POST['recipient']);
     $str_amount = clean_input($_POST['transfer-amount']);
+    $user_balance = clean_input($_POST['user-balance']);
     $remark = clean_input($_POST['remark']);
 
-    if (isset($recipient) && filter_var($recipient, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^\d{10}$/')))){
-        $recipient = filter_var($recipient,FILTER_SANITIZE_NUMBER_INT);
+    if (str_replace((","), "", $str_amount) > $user_balance){
+        die ("Insufficient balance.");
     }
 
-    if (isset($str_amount)){
-        $str_amount = filter_var($str_amount, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $amount = intval(str_replace(',', '', $str_amount));
+    if (empty($recipient) || !preg_match('/\d{10}$/', $recipient)){
+        die ("Invalid account no.");
+    } 
+
+    if (strlen($remark) > 100){
+        die ("Remark is too long.");
     }
 
-    if (isset($remark))
-    {
-        $remark = filter_var($remark, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    if ($recipient == $sender_id){
+        die ("You cannot transfer to yourself.");
     }
-    
- }
+
+    if (empty($str_amount)){
+        die ("Amount is required.");
+    } else if (str_replace((","), "", $str_amount) == 0 || str_replace((","), "", $str_amount) < 0 || !preg_match('/^[0-9]+$/', str_replace((","), "", $str_amount))) {
+        die ("Invalid amount.");
+    }
+}
 
  function clean_input($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
-
-    return $data;
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
  }
  
+ $amount = str_replace((","), "", $str_amount);
+
 $recipient_sql = "SELECT * FROM bank_user_data WHERE account_number = ?";
 $sender_sql = "SELECT * FROM bank_user_data WHERE id = ?";
 
@@ -59,7 +66,7 @@ $sender = $sender_result->fetch_assoc();
 
 $sender_stmt->close();
 
-$sender_balance_str = $sender['account_balance'];
+$sender_balance_str =  $sender['account_balance'];
 $receiver_balance_str = $receiver['account_balance'];
 
 $transfer = new Transactions;
@@ -73,7 +80,7 @@ $transfer->beneficiary_account_no = $receiver['account_number'];
 $transfer->transaction_type = "Transfer";
 $transfer->transaction_remark = $remark;
 $transfer->transaction_date = $day;
-$transfer->record_transfer();
+
 
 
 $sender_balance = floatval($sender_balance_str);
@@ -100,7 +107,9 @@ $update_receiver_stmt->execute();
 
 
 if ($update_sender_stmt->affected_rows > 0 && $update_receiver_stmt->affected_rows > 0) {
-    header("Location:index.php?message=Transfer of ₦$amount to {$receiver['surname']} {$receiver['first_name']} was successful!");
+    $transfer->record_transfer();
+    session_regenerate_id(true);
+    header("Location:index.php?message=Transfer of ₦$str_amount to {$receiver['surname']} {$receiver['first_name']} was successful!");
     exit;
 }
 

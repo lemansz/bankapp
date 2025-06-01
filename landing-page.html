@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Bank</title>
+    <link rel="shortcut icon" href="./Assets/bank-logo-index.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style-landing-page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body>
+
+    <div class="topnav">
+        <a href="landing-page.html" title="Home">
+            <img src="Assets/homepage-icon.svg" alt="Home icon">
+            Home
+        </a>
+
+        <a href="contact-us.html" title="Contact Us">
+            <img src="Assets/customer-service-icon.svg" alt="Contact us">
+            Contact Us
+        </a>
+    </div>
+
+
+    <div>
+        <h1 class="welcome-text"></h1>
+    </div>
+
+<div class="landing-pg-pic-container">
+        <!-- Slider main container -->
+    <div class="swiper">
+     <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide"><img src="Assets/smiling-women.svg" alt="Smiling women"></div>
+    <div class="swiper-slide"><img src="Assets/man-on-call.svg" alt="Man calling"></div>
+    <div class="swiper-slide"><img src="Assets/mother-daughter.svg" alt="Mother & daughter"></div>
+    <div class="swiper-slide"><img src="Assets/focused-black-man.svg" alt="Mother & daughter"></div>
+    
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    </div>
+</div>
+
+<div class="welcome-text">
+    <p>Your gateway to seamless and convenient banking.</p>
+    <p>Join us today and unlock a world of possibilities.</p>
+</div>
+
+
+<div class="login-box">
+    <p>
+        <a href="login.php" class="btn-s btn-primary">Log In</a>
+    
+        <a href="signup.php" class="btn-s btn-secondary">Sign Up</a>
+    </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const txt = document.querySelector('.welcome-text');
+    const text = 'Welcome to Silver Bank ';
+
+    function textTypingEffect(element, text, i = 0){
+        if(i === 0 || i === ''){
+            element.textContent = ""
+        }
+        element.textContent += text[i];
+
+        if(i == text.length - 1){
+            return;
+        }
+
+        setTimeout(()=>textTypingEffect(element, text, i + 1), 70)
+
+        
+    }
+
+    textTypingEffect(txt, text);
+
+    const swiper = new Swiper('.swiper', {
+
+    loop: true,
+
+
+    pagination: {
+     el: '.swiper-pagination',
+     clickable: true,
+    },
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
+    navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+    },
+    });
+</script>
+</body>
+</html>

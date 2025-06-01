@@ -4,19 +4,21 @@ session_start();
 if (isset($_SESSION['user_id'])) {
     require __DIR__ . "/transactions_history.php";
 
-    $sql = "SELECT * FROM bank_user_data WHERE id= {$_SESSION['user_id']}";
-    $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
+    $stmt = $conn->prepare("SELECT * FROM bank_user_data WHERE id = ?");
+    $stmt->bind_param("i", $_SESSION['user_id']);
+    $stmt->execute();
+    $user = $stmt->get_result()->fetch_assoc();
 
     $history = new Transaction_history;
 
     $history->sender_id = $_SESSION['user_id'];
     $history->beneficary_id = $_SESSION['user_id'];
    
-}
+} 
 
 
 function greet (){
+ date_default_timezone_set('Africa/Lagos');
  $current_hour = date("H");
 
  if ($current_hour >= 6 && $current_hour < 12){
@@ -37,15 +39,22 @@ function greet (){
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style-index.css">
+    <link rel="shortcut icon" href="./Assets/bank-logo-index.svg" type="image/x-icon">
+
 </head>
 <body>
 
-    <?php if (isset($user)) : ?>
-    <div class="log-out">
-    <a href="logout.php" title="Log out"></a>
-    </div>
+    <?php if (isset($user)) : ?> 
+        <div class="root-container">
 
-    <div class="root-container">
+        <div class="logo-box">
+        
+        </div>
+
+        
+        <div class="log-out">
+        <a href="logout.php" title="Log out"></a>
+        </div>
 
         <div class="greet-block">
             <h1 class="greetings" id="greetings"><?= greet()?> <span class="gold-name-flicker" style="color: black;"><?=htmlspecialchars($user['first_name'])?></span></h1>
@@ -53,7 +62,7 @@ function greet (){
    
         <div class="upper-bar">
         <h2 id="account-number" class="account-number"><?= htmlspecialchars($user['account_number']) ?></h2>
-        <h3 class="balance-parent"><span>Balance: </span><span id="balance-val" class="balance-val">₦<?=htmlspecialchars(number_format($user['account_balance'], 2)) ?></span></h3>
+        <h3 class="balance-parent"><span>Balance: </span><span id="balance-val" class="balance-val">&#x20A6;<?=htmlspecialchars(number_format($user['account_balance'], 2)) ?></span></h3>
         <i id="toggleBalance" class="fa fa-eye-slash"></i>
         <br>
         <div class="transaction_history" id="transaction_history">
@@ -90,8 +99,7 @@ function greet (){
             </label>
             <br><br>
             <label for="amount" class="transfer-inputs">
-                <input type="text" id="transfer-amount" class="amountt" oninput="addCommasTransfer(this.value)"  placeholder="(₦) Amount"  pattern="[0-9,]*" name="transfer-amount" class="amountt">
-                <!-- <span class="naira"></span> -->
+                <input type="text" id="transfer-amount" class="amountt" oninput="addCommasTransfer(this.value)"  placeholder="(₦) Amount"  pattern="[0-9,]*" name="transfer-amount" class="amountt" inputmode="numeric">
             </label>
             <h3 class="recipient" id="recipient"></h3>
             
@@ -101,17 +109,16 @@ function greet (){
             </label>
             <br><br>
             <label for="remark" class="transfer-inputs">
-                <input type="text" placeholder="Remark(optional)" name="remark">
+                <input type="textarea" placeholder="Remark(optional)" name="remark" maxlength="100">
             </label>
             <br><br>
+            <input type="hidden" name="user-balance" value="<?= htmlspecialchars($user['account_balance'])?>">
             <input type="submit" id="send" value="Send" class="send-transfer">
             <input type="button" value="Cancel" class="cancel" id="cancel" onclick="cancelTransfer()"></input>
             <p style="margin-left:20px"><a href="forgot-pin.php" style="text-decoration: none;">Forgot Pin?</a></p>
     </form>
 
-    <!-- I want to put hidden input element to collect the isp chosen. to be done in select-airtime.js -->
-
-    <form action="airtime.php" id="airtime_form" class="airtime_form" method="post" style="width: 72%; margin-top: 0.5rem;">
+    <form action="airtime.php" id="airtime_form" class="airtime_form" method="post">
             <div class="airtime-provider">
                 <div class="select-selected">Airtel</div>
                 <div class="select-provider select-hide">
@@ -137,10 +144,11 @@ function greet (){
             <input type="text" id="airtime-phone-number" name="airtime-phone-number" inputmode="numeric" value="<?= $user['phone_number']?>" placeholder="Phone number" maxlength="11" pattern="[0-9]*">
             <br><br>
             <label for="airtime-pin">
-                <input type="password" maxlength="4" placeholder="Pin" id="airtime-pin" class="airtime-pin" pattern="[0-9]*" oninput="handleAirtimePin()">
+                <input type="password" maxlength="4" placeholder="Pin" id="airtime-pin" class="airtime-pin" pattern="[0-9]*" oninput="handleAirtimePin()" inputmode="numeric">
                 <i id="toggleAirtimePin" class="fa fa-eye pin-icon"></i>
             </label>
             <br><br>
+            <input type="hidden" name="user-balance-airtime" value="<?= htmlspecialchars($user['account_balance'])?>">
             <input type="submit" id="buy-airtime" value="Buy"> <input type="button" value="Cancel" onclick="cancelAirtime()">
             <p><a href="forgot-pin.php" style="text-decoration: none; ">Forgot Pin?</a></p>
     </form>
@@ -205,9 +213,10 @@ function greet (){
     <input type="hidden" name="data-plan-amount" id="data-plan-amount" value="">
     <input type="hidden" name="data-bundle" id="data-bundle" value="">
     <br><br>
-    <input type="password" maxlength="4" id="data-pin" class="data-pin" placeholder="Pin" oninput="handleDataPin()">
+    <input type="password" maxlength="4" id="data-pin" class="data-pin" placeholder="Pin" oninput="handleDataPin()" inputmode="numeric" pattern="[0-9]*">
     <i id="toggleDataPin" class="fa fa-eye pin-icon"></i>
     <br><br>
+    <input type="hidden" name="user-balance-data" value="<?= htmlspecialchars($user['account_balance'])?>">
     <input type="submit" value="Buy" id="buy-data"> <input type="button" value="Cancel" onclick="cancelData()">
     <p><a href="forgot-pin.php" style="text-decoration: none;">Forgot Pin?</a></p>
     
@@ -218,25 +227,29 @@ function greet (){
 <?php  if (isset($_GET['message'])) {
     $message = htmlspecialchars($_GET['message'], ENT_QUOTES, 'UTF-8');
     echo "<div class='transaction-message' id='transaction-message'>
-    $message
-    '<br><br>'
+    <p id='message'>" . htmlspecialchars($message, ENT_QUOTES, 'UTF-8') . "</p>
     <button id='dismiss-button' class='dismiss-button'>Dismiss</button>
-     </div>";
+    </div>";
     }
-    ?>
+?>
 </div>
 <script>
-    document.getElementById('dismiss-button').addEventListener('click', ()=>{
-        document.getElementById('transaction-message').style.display = "none";
-    });
+
+    if (document.getElementById('dismiss-button')){
+        document.getElementById('dismiss-button').addEventListener('click', ()=>{
+            document.getElementById('transaction-message').style.display = "none";
+        })
+    }
+
+    function dismissMessage(){
+        if (document.getElementById('message')){
+            document.getElementById('transaction-message').style.display = "none";
+        }
+    }
+
+    window.addEventListener('click', ()=>{dismissMessage()})
 </script>
-
-    <?php else: ?>
-        
-    <p><a href="login.php">Log in</a> or <a href="signup.php">SignUp</a></p>
-        
-    <?php endif;?>
-
+    <script src="check-session.js"></script>
     <script src="eye-toggle.js"></script>
     <script src="form-operationss.js"></script>
     <script src="select-airtime.js"></script>
@@ -311,6 +324,7 @@ function greet (){
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(`pin=${pin}`);
     });
+
 }
 
 //to validate the pin
@@ -355,9 +369,7 @@ async function updateSendButtonState() {
     }
 }
 
-transferForm.addEventListener('focusin', (e) => {
-    updateSendButtonState();
-});
+
 
 //airtime logic
 
@@ -578,6 +590,26 @@ window.onload = function() {
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
     window.history.replaceState({}, document.title, newUrl);
 }
+    // User activity tracker to keep session alive only on real activity
+    let activityTimeout;
+    function sendActivityUpdate() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "check-session.php?update=1&t=" + new Date().getTime(), true);
+        xhr.send();
+    }
+    function activityDetected() {
+        clearTimeout(activityTimeout);
+        sendActivityUpdate();
+        activityTimeout = setTimeout(() => {}, 60000);
+    }
+    window.addEventListener('mousemove', activityDetected);
+    window.addEventListener('keydown', activityDetected);
+    window.addEventListener('click', activityDetected);
+
 </script>
+<?php else: ?>
+    <?= header("Location: landing-page.html"); exit; ?>
+<?php endif; ?>
 </body>
 </html>
+

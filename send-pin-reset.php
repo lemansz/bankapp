@@ -1,5 +1,14 @@
 <?php
 
+ session_start();
+
+ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])){
+    header("Location: landing-page.html");
+    exit;
+ }
+
+ session_regenerate_id(true);
+
 $email = $_POST['email'];
 
 $token = bin2hex(random_bytes(16));
@@ -10,7 +19,7 @@ $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
 require __DIR__ . "/db.php";
 
-$sql = "UPDATE bank_user_data SET reset_token_hashed = ?, reset_token_expires_at = ? WHERE email = ?";
+$sql = "UPDATE bank_user_data SET reset_token_hash = ?, reset_token_expires_at = ? WHERE email = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -29,14 +38,13 @@ if ($conn->affected_rows){
     to reset your pin.
 
     END;
-
     try{
         $mail->send();
-        echo "Message sent, please check your inbox.";
+        header("Location:forgot-password.php?message= Reset link sent, please check your inbox.");
+        exit;
     } catch (Exception $e){
-        
-        echo "Message could not be sent. Check your internet connection and refresh the page.";
-
+        header("Location:forgot-password.php?message= Reset link sent, please check your inbox.");
+        exit;
     }
 }
 ?>

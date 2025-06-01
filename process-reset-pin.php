@@ -1,12 +1,21 @@
 <?php
 
+session_start();
+
+ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])){
+   header("Location: landing-page.html");
+   exit;
+ }
+
+session_regenerate_id(true);
+
 require __DIR__ . '/db.php';
 
 $token = $_POST['token'];
 
 $token_hash = hash('sha256', $token);
 
-$sql = "SELECT * FROM bank_user_data WHERE reset_token_hashed = ?";
+$sql = "SELECT * FROM bank_user_data WHERE reset_token_hash = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -43,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
  }
 
  $sql = "UPDATE bank_user_data SET hashed_pin = ?, 
- reset_token_hashed = NULL, reset_token_expires_at = NULL
+ reset_token_hash = NULL, reset_token_expires_at = NULL
  WHERE id = ?";
 
  $stmt = $conn->prepare($sql);

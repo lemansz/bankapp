@@ -5,7 +5,7 @@
 
  require __DIR__ . '/db.php';
 
- $sql = "SELECT * FROM bank_user_data WHERE reset_token_hashed = ?";
+ $sql = "SELECT * FROM bank_user_data WHERE reset_token_hash = ?";
 
  $stmt = $conn->prepare($sql);
 
@@ -33,7 +33,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reset pin</title>
+    <link rel="shortcut icon" href="Assets/bank-logo-index.svg" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>

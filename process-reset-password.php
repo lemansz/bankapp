@@ -1,3 +1,4 @@
+
 <?php
 
 require __DIR__ . '/db.php';
@@ -6,7 +7,7 @@ $token = $_POST['token'];
 
 $token_hash = hash('sha256', $token);
 
-$sql = "SELECT * FROM bank_user_data WHERE reset_token_hashed = ?";
+$sql = "SELECT * FROM bank_user_data WHERE reset_token_hash = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -43,12 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
  }
 
  $sql = "UPDATE bank_user_data SET hashed_password = ?, 
- reset_token_hashed = NULL, reset_token_expires_at = NULL
+ reset_token_hash = NULL, reset_token_expires_at = NULL
  WHERE id = ?";
 
  $stmt = $conn->prepare($sql);
  $stmt->bind_param("ss", $hashed_password, $user['id']);
  $stmt->execute();
 
- echo "Password reset successful. You can now <a href='login.php'>login</a>";
+ if ($stmt->affected_rows > 0){
+   header("Location: login.php?message=Password reset successful. You may now login!");
+   $stmt->close();
+   exit;
+ }
+
 ?>

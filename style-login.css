@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Parkinsans:wght@300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Stylish&family=Varela&display=swap');
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh; 
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+   
+
+}
+form{
+    width: 15rem;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    padding-left: 2rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 200px;
+    background-color: rgb(240, 240, 240);
+    
+}
+input{
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    
+      
+}
+input:hover{
+    border-color: #333;
+}
+    ::placeholder{
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+#login{
+    margin-top: 1rem;
+    transition: background-color 0.5s ease-in-out;
+    cursor: pointer;
+}
+#login:active{
+    background-color: green;
+    color: white;
+
+}
+.error-message{
+    color: red;  
+}
+.password-icon{
+position: relative;
+bottom: 35px;
+left: 170px;
+
+}
+
+.password-reset-message{
+width: 20.75rem;
+height: 6.25rem;
+border: none;
+border-radius: 0.5rem;
+background-color: rgba(0, 128, 0, 0.153);
+margin-left: auto;
+margin-right: auto;
+padding-top: 0.6rem;
+padding-bottom: 1rem;
+}
+
+.password-reset-message p {
+text-align: center;
+}
+
+.dismiss-button{
+border-radius: 0.5rem;
+border: 1px solid hsl(0, 0%, 80%);
+padding: 0.60rem;
+font-size: large;
+background-color: white;
+float: right;
+margin-right: 0.5rem;
+cursor: pointer;
+}
+
+.dismiss-button:hover{
+border-color: #333;
+}
+.dismiss-button:active{
+background-color: hsl(116, 49%, 63%);
+}
+
+.logo-box{
+    width: 100%;
+    height: 200px;
+    background-image: url('./Assets/bank-logo-login.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
