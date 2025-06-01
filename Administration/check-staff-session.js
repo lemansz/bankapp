@@ -3,7 +3,6 @@ function checkSession() {
     xhr.open("GET", "check-staff-session.php?t=" + new Date().getTime(), true); // Prevent caching
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log('Raw response:', xhr.responseText); // Debug: log raw response
             try {
                 const response = JSON.parse(xhr.responseText);
                 if (response.status === "expired") {
