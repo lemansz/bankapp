@@ -29,15 +29,20 @@ $sum_of_transaction = new TransactionsStats;
     <!--Navigation bar-->
     <div class="topnav">
         <span class="hamburger" onclick="toggleNav()">☰</span>
-        <a href="add-staff.php" target="_blank">Add a staff
+
+        <a href="admin-index.php">Home
+            <img src="../Assets/home.svg" alt="Search customer">
+        </a>
+
+        <a href="add-staff.php">Add a staff
             <img src="../Assets/add-employee-icon.svg" alt="Add staff">
         </a>
 
-        <a href="find-customer.php" target="_blank">Find customer
+        <a href="find-customer.php">Find customer
             <img src="../Assets/find-customer-icon.svg" alt="Search customer">
         </a>
 
-        <a href="inspect-transaction.php" target="_blank">Inspect Transaction
+        <a href="inspect-transaction.php">Inspect Transaction
             <img src="../Assets/inspection-icon.svg" alt="Inspect transaction">
         </a>
 

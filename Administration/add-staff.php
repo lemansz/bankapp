@@ -87,7 +87,9 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
     padding-top: 0.6rem;
     padding-bottom: 1rem;
 }
-
+.hamburger {
+    display: none;
+}
 .transaction-message p {
     text-align: center;
 }
@@ -108,6 +110,35 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
 }
 .dismiss-button:active{
    background-color: hsl(116, 49%, 63%);
+}
+
+.topnav{
+    background-color: silver;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: block;
+}
+.topnav a {
+    position: relative;
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover{
+    background-color: hsl(0, 0%, 70%);;
+    color: black;
+}
+a img {
+    position: absolute;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateY(-50%);
 }
 
 @media (max-width: 768px) {
@@ -133,9 +164,73 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
     input[type="radio"] {
         width: auto;
     }
+
+    
+    .hamburger {
+        display: block;
+    }
+
+    /* Responsive navigation bar */
+    .topnav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: silver;
+        padding: 10px;
+    }
+    .topnav a {
+        display: none; /* Hide links by default */
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+    .topnav a img {
+        margin-left: 0.2rem;
+    }
+    .topnav .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .topnav.active a {
+        display: block; /* Show links when active */
+    }
 }
+
+
+h2
+{
+    margin-top: 5rem;
+}
+
 </style>
 <body>
+
+<div class="topnav">
+    <span class="hamburger" onclick="toggleNav()">☰</span>
+
+    <a href="admin-index.php">Home
+        <img src="../Assets/home.svg" alt="Search customer">
+    </a>
+
+    <a href="add-staff.php">Add a staff
+        <img src="../Assets/add-employee-icon.svg" alt="Add staff">
+    </a>
+
+    <a href="find-customer.php">Find customer
+        <img src="../Assets/find-customer-icon.svg" alt="Search customer">
+    </a>
+
+    <a href="inspect-transaction.php">Inspect Transaction
+        <img src="../Assets/inspection-icon.svg" alt="Inspect transaction">
+    </a>
+
+    <a href="staff-log-out.php"> Log out
+        <img src="../Assets/log-out-admin.svg" alt="Log out">
+    </a>
+</div>
+
 <?php  if (isset($_GET['message'])) {
     $message = htmlspecialchars($_GET['message'], ENT_QUOTES, 'UTF-8');
     echo "<div class='transaction-message' id='transaction-message'>
@@ -192,7 +287,6 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
         <label for="staff-role">
             <br>
             <select name="staff-role" id="staff-role">
-                <option value="Account Manager">Account Manager</option>
                 <option value="Branch Manager">Branch Manager</option>
                 <option value="Cashier">Cashier</option>
             </select>
@@ -290,6 +384,34 @@ window.onload = function() {
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
     window.history.replaceState({}, document.title, newUrl);
 }
+
+function toggleNav() {
+  const topnav = document.querySelector('.topnav');
+  const hamburger = document.querySelector('.hamburger');
+  topnav.classList.toggle('active');
+  if (topnav.classList.contains('active')) {
+      hamburger.textContent = "✖"; // Change to close icon
+  } else {
+      hamburger.textContent = "☰"; // Change back to menu icon
+  }
+}
+</script>
+<script src="check-staff-session.js"></script>
+<script>
+let activityTimeout;
+function sendActivityUpdate() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "check-staff-session.php?update=1&t=" + new Date().getTime(), true);
+    xhr.send();
+}
+function activityDetected() {
+    clearTimeout(activityTimeout);
+    sendActivityUpdate();
+    activityTimeout = setTimeout(() => {}, 60000);
+}
+window.addEventListener('mousemove', activityDetected);
+window.addEventListener('keydown', activityDetected);
+window.addEventListener('click', activityDetected);
 </script>
 </body>
 </html>

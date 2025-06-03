@@ -51,26 +51,18 @@
         <label for="account no" class="deposit-input">
           <input type="text" placeholder="Account no" oninput="showUserDeposit(this.value)" maxlength="10" id="deposit-account-no" inputmode="numeric"  name="deposit-account-no">
           <br>
-          <span id="deposit-account-no-error" class="error-message"></span>
-          <br>
+          <p id="deposit-account-no-error" class="error-message"></p>
         </label>
 
         <label for="amount" class="deposit-input">
             <input type="text" id="deposit-amount" class="amount" oninput="addCommasDeposit(this.value)"  placeholder="(₦) Amount" name="deposit-amount" class="amount" inputmode="numeric">
             <br>
-            <span id="deposit-amout-error" class="error-message"></span>
-            <br>
+            <p id="deposit-amout-error" class="error-message"></p>
         </label>
         
         <span class="deposit-recipient" id="deposit-recipient"></span>
 
-        <label for="deposit-pin" class="deposit-input">
-            <br><br>
-            <input type="password" placeholder="Pin" maxlength="4" name="deposit-pin" class="deposit-pin" id="deposit-pin" inputmode="numeric">
-            <br>
-            <span id="deposit-pin-error" class="error-message"></span>
-            <i id="togglePin" class="fa fa-eye pin-icon"></i>
-        </label>
+        <span id="user-not-found-error" class="error-message"></span>    
 
         <br><input type="submit" id="deposit-btn" value="Deposit" class="deposit-btn">
         <input type="button" value="Cancel" class="cancel" id="cancel-deposit"></input>

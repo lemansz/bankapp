@@ -3,91 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Contact Us | Silver Bank</title>
+    <link rel="stylesheet" href="style-contact-us.css">
     <link rel="shortcut icon" href="Assets/bank-logo-index.svg" type="image/x-icon">
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: white;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        color: #222;
-    }
-    .topnav{
-    background-color: silver;
-    overflow: hidden;
-    
-    }
-    .topnav a {
-    position: relative;
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 14px 32px;
-    text-decoration: none;
-    font-size: 17px;
-    }
-    .topnav a:hover{
-    background-color: hsl(0, 0%, 70%);;
-    color: black;
-    }
-    .container {
-        max-width: 400px;
-        margin: 3rem auto;
-        background: #fff;
-        border-radius: 10px;
-        padding: 2rem 2.5rem;
-        border: 1px solid #ddd;
-    }
-    .contact-item {
-        margin-bottom: 1.2rem;
-        font-size: 1.05rem;
-    }
-    .contact-label {
-        font-weight: 500;
-        color: #666;
-    }
-    a {
-        color: #666;
-        text-decoration: none;
-    }
-    .contact-item a:hover {
-        text-decoration: underline;
-    }
-    .logo-box{
-    width: 100%;
-    height: 120px;
-    margin: 0;
-    background-image: url('./Assets/bank-logo-login.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    }
-    </style>
+    <script src="mobile-menu-contact.js" defer></script>
 </head>
 <body>
-    
-    <div class="topnav">
-        <a href="landing-page.html" title="Home">
-            <img src="Assets/homepage-icon.svg" alt="Home icon">
-            Home
-        </a>
-
-        <a href="contact-us.html" title="Contact Us">
-            <img src="Assets/customer-service-icon.svg" alt="Contact us">
-            Contact Us
-        </a>
-    </div>
-    <div class="logo-box"></div>
-    <div class="container">
-        <div class="contact-item">
-            <span class="contact-label">Email:</span> <a href="mailto:lekeolalekan54@gmail.com">silverbank@gmail.com</a>
+    <header>
+        <div class="container">
+            <img src="Assets/bank-logo-index.svg" alt="Silver Bank Logo" class="logo">
+            <nav class="main-nav">
+                <a href="landing-page.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </nav>
+            <button class="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="contact-item">
-            <span class="contact-label">Phone:</span> <a href="tel:08132328548">08132328548</a>
+        <div class="mobile-menu-overlay">
+            <button class="close-mobile-menu" aria-label="Close menu">&times;</button>
+            <nav class="mobile-nav">
+                <a href="landing-page.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </nav>
         </div>
-        <div class="contact-item">
-            <span class="contact-label">Address:</span> 123 Silver Bank Street, Lagos, Nigeria
+    </header>
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you.</p>
+            </div>
+        </section>
+        <section class="contact-content">
+            <div class="container contact-flex">
+                <form class="contact-form" autocomplete="off">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                    <button type="submit" class="cta-btn">Send</button>
+                </form>
+                <div class="contact-info-minimal">
+                    <div><img src="Assets/customer-service-icon.svg" alt="Email"> support@silverbank.com</div>
+                    <div><img src="Assets/phone-icon.svg" alt="Phone"> +234 800 123 4567</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Silver Bank. All rights reserved.</p>
         </div>
-    </div>
+    </footer>
 </body>
 </html>

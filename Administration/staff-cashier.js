@@ -3,7 +3,6 @@
     document.getElementById('deposit-form').style.display = "none";
     document.getElementById('deposit-account-no').value = "";
     document.getElementById('deposit-amount').value = "";
-    document.getElementById('deposit-pin').value = "";
      
  }
 
@@ -56,19 +55,18 @@ function addCommasDeposit(value){
     let isValid = true;
     const depositAccountNo = document.getElementById('deposit-account-no').value;
     const depositAmount = document.getElementById('deposit-amount').value;
-    const depositPin = document.getElementById('deposit-pin').value;
 
     var depositAccountNoError = document.getElementById('deposit-account-no-error');
     var depositAmountError = document.getElementById('deposit-amout-error');
-    var depositPinError = document.getElementById('deposit-pin-error');
+    
 
     depositAccountNoError.textContent = "";
     depositAmountError.textContent = "";
-    depositPinError.textContent = "";
+    
 
     const regexAccountNumber = /^[0-9]{10}$/;
     const regexAmount = /[0-9],/;
-    const regPin = /^[0-9]{4}$/;
+    
 
     if (depositAccountNo.trim() === ""){
         isValid = false;
@@ -88,14 +86,6 @@ function addCommasDeposit(value){
     } else if (regexAmount.test(depositAmount) === false){
         isValid = false;
         depositAmountError.textContent = "Invalid amount.";
-    }
-
-    if (depositPin.trim() === ""){
-        isValid = false;
-        depositPinError.textContent = "Pin is required."
-    } else if (regPin.test(depositPin) === false){
-        isValid = false;
-        depositPinError.textContent = "Invalid pin."
     }
     return isValid;
 }
@@ -122,17 +112,12 @@ window.onload = function() {
 
         if (error === 'user_not_found') {
             depositForm.style.display = "block";
-            document.getElementById('deposit-pin-error').textContent = "Could not retrieve user. Check account number and try again.";   
-        }
-
-        if (error === 'incorrect_pin') {
-            depositForm.style.display = "block";
-            document.getElementById('deposit-pin-error').textContent = "Incorrect pin.";   
+            document.getElementById('user-not-found-error').textContent = "Customer not found.";   
         }
 
         if (error === 'user_not_found_w') {
             withdrawForm.style.display = "block";
-            document.getElementById('withdraw-pin-error').textContent = "Could not retrieve user. Check account number and try again.";   
+            document.getElementById('withdraw-pin-error').textContent = "Customer not found.";   
         }
 
         if (error === 'incorrect_pin_w') {

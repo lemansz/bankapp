@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Parkinsans:wght@300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Stylish&family=Varela&display=swap');
+
+* {
+  box-sizing: border-box;
+}
 body{
    display: flex;
    flex-direction: column;
@@ -9,15 +13,16 @@ body{
    font-style: normal;
    width: 100%;
    height: 100%;
-   box-sizing: border-box;
    padding-bottom: 0.625rem;
    
  }
 form{
     width: 300px;
     background-color: rgb(240, 240, 240);
-    padding-left: 1.5rem;
-    padding-top: 1rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin-top: 3rem;
     border-radius: 0.5rem;
 }
@@ -33,7 +38,7 @@ input{
     transition: border-color 0.3s ease;
     margin-bottom: 12px;
     margin-top: 8px;
-    width: 200px;
+    width: 100%;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -63,16 +68,23 @@ transition: background-color 0.5s ease-in-out;
 .error-message{
     color: red;
 }
-.password-icon{
-    position: relative;
-    top: -0px;
-    right: 30px;
-
-    
+.password-container {
+  position: relative;
+  width: 100%;
 }
+
+.password-container input {
+  width: 100%;
+  padding-right: 2.5rem; /* space for the icon */
+}
+
+.password-icon,
 .confirm-password-icon {
-    position: relative;
-    top: -0px;
-    right: 30px;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
 }
 

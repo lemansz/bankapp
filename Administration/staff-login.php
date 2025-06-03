@@ -10,7 +10,7 @@
     $result = $conn->query($sql);
 
     $staff = $result->fetch_assoc();
-    
+    //
     if (!empty($staff)) {
         $post_passkey = isset($_POST['passkey']) ? htmlspecialchars($_POST['passkey']) : '';
         $post_staff_role = isset($_POST['staff-role']) ? htmlspecialchars($_POST['staff-role']) : '';

@@ -35,21 +35,27 @@
         <br>
         <span class="error-message" id="phoneNumberError"></span> 
     </label>
-    <label for="password">
+    <div class="password-container">
+      <label for="password" style="width:100%;">
         <input type="password" placeholder="Password" id="password" name="password" class="passwordInput">
-        <i id="togglePassword" class="fa fa-eye password-icon"></i>
+        <span id="togglePassword" class="fa fa-eye password-icon"></span>
         <br>
         <span class="error-message" id="passwordError"></span>
-    </label>
-    <label for="confirmPassword">
+      </label>
+    </div>
+    <div class="password-container">
+      <label for="confirmPassword" style="width:100%;">
         <input type="password" id="confirmPassword" placeholder="Confirm Password">
-        <i id="toggleConfirmPassword" class="fa fa-eye confirm-password-icon"></i>
+        <span id="toggleConfirmPassword" class="fa fa-eye confirm-password-icon"></span>
         <span class="error-message" id="confirmPasswordError"></span>
         <span id="email-taken" class="error-message"></span>
-    </label>
+      </label>
+    </div>
     <br>
     <input type="submit" value="Submit" class="submit" id="submit">
 </form>
 
 
 <script src="signup.js"></script>
+</body>
+</html>

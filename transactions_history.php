@@ -91,12 +91,12 @@ public function transaction_history_cards()
 
             case 'Transfer':
                 if ($row['sender_id'] == $this->sender_id) {
-                    echo "<h3 style='margin: 0; color: $bgColor;'>Transfer</h3>";
+                    echo "<h3 style='margin: 0; color: $bgColor;'>Sent</h3>";
                     echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
                     echo "<p><strong>Beneficiary:</strong> {$row['beneficiary_name']} | {$row['beneficiary_account_no']}</p>";
                     echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
                 } else {
-                    echo "<h3 style='margin: 0; color: $bgColor;'>Transfer</h3>";
+                    echo "<h3 style='margin: 0; color: $bgColor;'>Received</h3>";
                     echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
                     echo "<p><strong>Sender details:</strong> {$row['sender_name']} | {$row['sender_account_no']}</p>";
                     echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";

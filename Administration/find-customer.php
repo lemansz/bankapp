@@ -51,7 +51,30 @@
     <link rel="stylesheet" href="style-find-cutomer.css">
 </head>
 <body>
-    <h2>Find Customer</h2>
+    <div class="topnav">
+    <span class="hamburger" onclick="toggleNav()">☰</span>
+
+    <a href="admin-index.php">Home
+        <img src="../Assets/home.svg" alt="Search customer">
+    </a>
+
+    <a href="add-staff.php">Add a staff
+        <img src="../Assets/add-employee-icon.svg" alt="Add staff">
+    </a>
+
+    <a href="find-customer.php">Find customer
+        <img src="../Assets/find-customer-icon.svg" alt="Search customer">
+    </a>
+
+    <a href="inspect-transaction.php">Inspect Transaction
+        <img src="../Assets/inspection-icon.svg" alt="Inspect transaction">
+    </a>
+
+    <a href="staff-log-out.php"> Log out
+        <img src="../Assets/log-out-admin.svg" alt="Log out">
+    </a>
+    </div>
+    <h2 style="margin-top: 5rem;">Find Customer</h2>
 
     <form action="<?php $_SERVER['PHP_SELF']?>" method="post" id="find-customer-form">
         <div>
@@ -65,6 +88,7 @@
     </form>
 
     <?php if ($found_customer):?>
+
     <div id="customer-info-parent" class="customer-info-parent">
 
     <div class="x-sign" id="x-sign">&#10005</div>
@@ -135,6 +159,35 @@
                 document.getElementById('account-no').focus();
             }
         })
+
+    function toggleNav() {
+        const topnav = document.querySelector('.topnav');
+        const hamburger = document.querySelector('.hamburger');
+        topnav.classList.toggle('active');
+        if (topnav.classList.contains('active')) {
+            hamburger.textContent = "✖"; // Change to close icon
+        } else {
+            hamburger.textContent = "☰"; // Change back to menu icon
+        }
+    }
     </script>
+
+    <script src="check-staff-session.js"></script>
+<script>
+let activityTimeout;
+function sendActivityUpdate() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "check-staff-session.php?update=1&t=" + new Date().getTime(), true);
+    xhr.send();
+}
+function activityDetected() {
+    clearTimeout(activityTimeout);
+    sendActivityUpdate();
+    activityTimeout = setTimeout(() => {}, 60000);
+}
+window.addEventListener('mousemove', activityDetected);
+window.addEventListener('keydown', activityDetected);
+window.addEventListener('click', activityDetected);
+</script>
 </body>
 </html>

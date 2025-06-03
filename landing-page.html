@@ -4,105 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silver Bank</title>
-    <link rel="shortcut icon" href="./Assets/bank-logo-index.svg" type="image/x-icon">
     <link rel="stylesheet" href="style-landing-page.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="shortcut icon" href="./Assets/bank-logo-index.svg" type="image/x-icon">
+    <script src="mobile-menu.js" defer></script>
+    <script src="landing-animations.js" defer></script>
 </head>
 <body>
-
-    <div class="topnav">
-        <a href="landing-page.html" title="Home">
-            <img src="Assets/homepage-icon.svg" alt="Home icon">
-            Home
-        </a>
-
-        <a href="contact-us.html" title="Contact Us">
-            <img src="Assets/customer-service-icon.svg" alt="Contact us">
-            Contact Us
-        </a>
-    </div>
-
-
-    <div>
-        <h1 class="welcome-text"></h1>
-    </div>
-
-<div class="landing-pg-pic-container">
-        <!-- Slider main container -->
-    <div class="swiper">
-     <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-    <!-- Slides -->
-    <div class="swiper-slide"><img src="Assets/smiling-women.svg" alt="Smiling women"></div>
-    <div class="swiper-slide"><img src="Assets/man-on-call.svg" alt="Man calling"></div>
-    <div class="swiper-slide"><img src="Assets/mother-daughter.svg" alt="Mother & daughter"></div>
-    <div class="swiper-slide"><img src="Assets/focused-black-man.svg" alt="Mother & daughter"></div>
-    
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    </div>
-</div>
-
-<div class="welcome-text">
-    <p>Your gateway to seamless and convenient banking.</p>
-    <p>Join us today and unlock a world of possibilities.</p>
-</div>
-
-
-<div class="login-box">
-    <p>
-        <a href="login.php" class="btn-s btn-primary">Log In</a>
-    
-        <a href="signup.php" class="btn-s btn-secondary">Sign Up</a>
-    </p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    const txt = document.querySelector('.welcome-text');
-    const text = 'Welcome to Silver Bank ';
-
-    function textTypingEffect(element, text, i = 0){
-        if(i === 0 || i === ''){
-            element.textContent = ""
-        }
-        element.textContent += text[i];
-
-        if(i == text.length - 1){
-            return;
-        }
-
-        setTimeout(()=>textTypingEffect(element, text, i + 1), 70)
-
-        
-    }
-
-    textTypingEffect(txt, text);
-
-    const swiper = new Swiper('.swiper', {
-
-    loop: true,
-
-
-    pagination: {
-     el: '.swiper-pagination',
-     clickable: true,
-    },
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
-    navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-    },
-    });
-</script>
+    <header>
+        <div class="container">
+            <img src="Assets/bank-logo-index.svg" alt="BankApp Logo" class="logo">
+            <nav class="main-nav">
+                <a href="contact-us.html">Contact Us</a>
+                <a href="about-us.html">About Us</a>
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </nav>
+            <button class="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu-overlay">
+            <button class="close-mobile-menu" aria-label="Close menu">&times;</button>
+            <nav class="mobile-nav">
+                <a href="contact-us.html">Contact Us</a>
+                <a href="about-us.html">About Us</a>
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <section class="hero section-animate">
+        <div class="container">
+            <h1>Welcome to Silver Bank</h1>
+            <p>Your trusted partner for seamless financial services. Manage your money, buy airtime, and purchase data all in one place.</p>
+            <a href="signup.php" class="cta-btn">Get Started</a>
+        </div>
+    </section>
+    <section class="services section-animate">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-list">
+                <div class="service">
+                    <img src="Assets/transfer.svg" alt="Transactions">
+                    <h3>Transactions</h3>
+                    <p>Send and receive money instantly, pay bills, and manage your transaction history with ease and security.</p>
+                </div>
+                <div class="service">
+                    <img src="Assets/mobile-recharge-icon.svg" alt="Airtime">
+                    <h3>Airtime</h3>
+                    <p>Recharge your mobile phone for all major networks directly from your account, anytime, anywhere.</p>
+                </div>
+                <div class="service">
+                    <img src="Assets/mobile-data-icon.svg" alt="Data">
+                    <h3>Data</h3>
+                    <p>Buy data bundles for yourself or others with just a few clicks. Stay connected with affordable data plans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="why-choose-us section-animate">
+        <div class="container">
+            <h2>Why Choose Silver Bank?</h2>
+            <ul>
+                <li>Fast, secure, and reliable transactions</li>
+                <li>24/7 customer support</li>
+                <li>User-friendly interface</li>
+                <li>All-in-one financial solution</li>
+            </ul>
+        </div>
+    </section>
+    <section class="about-us enhanced animate">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>At <strong>Silver Bank</strong>, we are passionate about making banking simple, secure, and accessible for everyone. Our dedicated team works tirelessly to deliver innovative financial solutions that empower individuals and businesses to thrive in a digital world. With a focus on trust, transparency, and customer satisfaction, we are your reliable partner for all things finance.</p>
+                    <a href="about-us.html" class="learn-more-link">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="Assets/smiling-women.svg" alt="Silver Bank Team" style="max-width: 250px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-us animate">
+        <div class="container">
+            <div class="contact-us-content">
+                <h2>Contact Us</h2>
+                <p>Have questions or need assistance? Our team is here to help you 24/7. Reach out to us through any of the following methods:</p>
+            </div>
+            <div class="contact-us-details">
+                <ul class="contact-details">
+                    <li><strong>Email:</strong> <a href="mailto:support@silverbank.com">support@silverbank.com</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:08132328548">08132328548</a></li>
+                    <li><strong>Address:</strong> 123 Silver Street, Lagos, Nigeria</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="signup.php">Sign Up</a>
+                <a href="login.php">Login</a>
+            </div>
+            <p>&copy; 2025 Silver Bank. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

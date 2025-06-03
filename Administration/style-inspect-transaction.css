@@ -13,6 +13,14 @@ body {
     padding: 0%;
 }
 
+h2{
+    margin-top: 5rem;
+}
+
+.hamburger{
+    display: none;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -26,6 +34,36 @@ form {
     padding-bottom: 2rem;
     background-color: rgb(240, 240, 240);
     margin-bottom: 3rem;
+}
+
+
+.topnav{
+    background-color: silver;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: block;
+}
+.topnav a {
+    position: relative;
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover{
+    background-color: hsl(0, 0%, 70%);;
+    color: black;
+}
+a img {
+    position: absolute;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateY(-50%);
 }
 
 input {
@@ -125,4 +163,44 @@ th {
 
 .x-sign-element:hover{
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 100%; /* Ensure the body takes full width */
+        padding: 0;
+        margin: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+
+    /* Responsive navigation bar */
+    .topnav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: silver;
+        padding: 10px;
+        margin-left: 1rem;
+    }
+    .topnav a {
+        display: none; /* Hide links by default */
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+    .topnav a img {
+        margin-left: 0.2rem;
+    }
+    .topnav .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .topnav.active a {
+        display: block; /* Show links when active */
+    }
 }

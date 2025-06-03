@@ -1,9 +1,8 @@
 <?php
 
-require dirname(__FILE__) . '/../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == "GET"){
-    
+    require dirname(__FILE__) . '/../db.php';
     if (isset($_GET['q'])) {
         $account_no = $_GET['q'];
     

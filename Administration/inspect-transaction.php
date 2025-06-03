@@ -1,23 +1,21 @@
 <?php
 
- session_start();
- session_regenerate_id(true);
- 
- if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager") {
-    require "bank_stats.php";
- } else {
+session_start();
+session_regenerate_id(true);
+if (!isset($_SESSION['staff_id']) || $_SESSION['staff_role'] != "Branch Manager") {
     header("Location: staff-login.php?message=You are not authorized to access this page.");
     exit;
- }
+}
 
+require "bank_stats.php";
 
- $found_transaction = false;
- 
- if ($_SERVER['REQUEST_METHOD'] === "POST"){
+$found_transaction = false;
+
+if ($_SERVER['REQUEST_METHOD'] === "POST"){
     require dirname(__FILE__) . '/../db.php';
 
     $transaction_id = clean_input($_POST['transaction_id']);
-    
+
     if (empty($transaction_id)){
         die ('Transaction id required.');
     }
@@ -34,12 +32,12 @@
     if (isset($transaction)){
         $found_transaction = true;
     }
-    
- }
 
- function clean_input($data){
+}
+
+function clean_input($data){
     return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
- }
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +50,31 @@
     <link rel="shortcut icon" href="../Assets/bank-logo-index.svg" type="image/x-icon">
 </head>
 <body>
+
+    <div class="topnav">
+    <span class="hamburger" onclick="toggleNav()">☰</span>
+    
+    <a href="admin-index.php">Home
+        <img src="../Assets/home.svg" alt="Home">
+    </a>
+
+    <a href="add-staff.php">Add a staff
+        <img src="../Assets/add-employee-icon.svg" alt="Add staff">
+    </a>
+
+    <a href="find-customer.php">Find customer
+        <img src="../Assets/find-customer-icon.svg" alt="Search customer">
+    </a>
+
+    <a href="inspect-transaction.php">Inspect Transaction
+        <img src="../Assets/inspection-icon.svg" alt="Inspect transaction">
+    </a>
+
+    <a href="staff-log-out.php"> Log out
+        <img src="../Assets/log-out-admin.svg" alt="Log out">
+    </a>
+    </div>
+
     <h2>Find Transaction</h2>
 
     <form action="<?php $_SERVER['PHP_SELF']?>" method="post" id="find-transaction-form">
@@ -61,7 +84,7 @@
             </label>
             <input type="submit" class="find" value="Find" name="find">
         </div>
-        
+
         <span id="transaction_id-error" class="error-message"></span>
     </form>
 
@@ -92,7 +115,7 @@
     </div>
 
     </div>
-    <?php 
+    <?php
     echo "
     <script>
     document.getElementById('x-sign').addEventListener('click', (e)=>{
@@ -125,7 +148,7 @@
                 </tr>
             </table>
         </div>
-<?php 
+<?php
 echo "
 <script>
 document.getElementById('x-sign').addEventListener('click', (e)=>{
@@ -162,7 +185,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
             </tr>
         </table>
     </div>
-    <?php 
+    <?php
     echo "
     <script>
     document.getElementById('x-sign').addEventListener('click', (e)=>{
@@ -198,7 +221,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
             </tr>
         </table>
     </div>
-    <?php 
+    <?php
     echo "
     <script>
     document.getElementById('x-sign').addEventListener('click', (e)=>{
@@ -214,7 +237,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
         <div id="x-sign" class="x-sign" style="cursor: pointer;">
         <span class="x-sign-element"> &#10005</span>
         </div>
-    
+
         <table id="transaction-info-table">
             <tr>
                 <th>Transaction Type</th>
@@ -237,7 +260,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
             </tr>
         </table>
     </div>
-    <?php 
+    <?php
     echo "
     <script>
     document.getElementById('x-sign').addEventListener('click', (e)=>{
@@ -255,34 +278,62 @@ document.getElementById('transaction-info-block').style.display = 'none';
         </script>
     <?php endif; ?>
 
-    <script>
-        function validateForm(){
-            let isValid = true;
+<script>
+function validateForm(){
+    let isValid = true;
 
-            const transactionId = document.getElementById('transaction_id').value;
-            const transactionIdError = document.getElementById('transaction_id-error');
+    const transactionId = document.getElementById('transaction_id').value;
+    const transactionIdError = document.getElementById('transaction_id-error');
 
-            transactionIdError.textContent = "";
+    transactionIdError.textContent = "";
 
-            const regexTransactionId = /[0-9]/;
+    const regexTransactionId = /[0-9]/;
 
-            if (transactionId.trim() === ""){
-                isValid = false;
-                transactionIdError.textContent = "Required";
-            } else if (!regexTransactionId.test(transactionId)){
-                isValid = false;
-                transactionIdError.textContent = "Invalid transaction ID";
+    if (transactionId.trim() === ""){
+        isValid = false;
+        transactionIdError.textContent = "Required";
+    } else if (!regexTransactionId.test(transactionId)){
+        isValid = false;
+        transactionIdError.textContent = "Invalid transaction ID";
+    }
+
+    return isValid;
+}
+
+document.getElementById('find-transaction-form').addEventListener('submit', (e)=>{
+    if (validateForm() === false){
+        e.preventDefault()
+        document.getElementById('transaction_id').focus();
             }
+})
 
-            return isValid;
-        }
-
-        document.getElementById('find-transaction-form').addEventListener('submit', (e)=>{
-            if (validateForm() === false){
-                e.preventDefault()
-                document.getElementById('transaction_id').focus();
-            }
-        })
-    </script>
+function toggleNav() {
+  const topnav = document.querySelector('.topnav');
+  const hamburger = document.querySelector('.hamburger');
+  topnav.classList.toggle('active');
+  if (topnav.classList.contains('active')) {
+      hamburger.textContent = "✖"; // Change to close icon
+  } else {
+      hamburger.textContent = "☰"; // Change back to menu icon
+  }
+}
+</script>
+<script src="check-staff-session.js"></script>
+<script>
+let activityTimeout;
+function sendActivityUpdate() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "check-staff-session.php?update=1&t=" + new Date().getTime(), true);
+    xhr.send();
+}
+function activityDetected() {
+    clearTimeout(activityTimeout);
+    sendActivityUpdate();
+    activityTimeout = setTimeout(() => {}, 60000);
+}
+window.addEventListener('mousemove', activityDetected);
+window.addEventListener('keydown', activityDetected);
+window.addEventListener('click', activityDetected);
+</script>
 </body>
 </html>
