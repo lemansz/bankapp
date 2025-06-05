@@ -13,8 +13,7 @@
     //
     if (!empty($staff)) {
         $post_passkey = isset($_POST['passkey']) ? htmlspecialchars($_POST['passkey']) : '';
-        $post_staff_role = isset($_POST['staff-role']) ? htmlspecialchars($_POST['staff-role']) : '';
-        if (password_verify($post_passkey, $staff['staff_pass_key']) && $post_staff_role == $staff['staff_role']) {
+        if (password_verify($post_passkey, $staff['staff_pass_key'])) {
             if ($staff['staff_role'] === "Cashier") {
                 session_start();
                 $_SESSION['staff_id'] = $staff['staff_id'];
@@ -28,6 +27,13 @@
                 $_SESSION['staff_role'] = $staff['staff_role'];
                 $_SESSION['last_activity'] = time(); // Set last activity on login
                 header('Location: admin-index.php');
+                exit;
+            } else if ($staff['staff_role'] === "Customer Service Representative"){
+                session_start();
+                $_SESSION['staff_id'] = $staff['staff_id'];
+                $_SESSION['staff_role'] = $staff['staff_role'];
+                $_SESSION['last_activity'] = time(); // Set last activity on login
+                header('Location: customer-service-rep.php');
                 exit;
             }
         }
@@ -83,15 +89,6 @@
         <input type="password" placeholder="Passkey" name="passkey" id="passkey" maxlength="6" inputmode="numeric">
         <i id="togglePasskey" class="fa fa-eye passkey-icon"></i>
     </label>
-    <br><br>
-    <label for="staff-role">
-        <select name="staff-role" id="staff-role">
-        <option value="" disabled selected>Select your role</option>
-        <option value="Cashier">Cashier</option>
-        <option value="Branch Manager">Branch Manager</option>
-        </select>
-    </label>
-    <br>
     <?php if ($is_invalid):?>
     <br>
     <span style="color: red;">Invalid Login</span>

@@ -4,10 +4,11 @@ session_start();
 session_regenerate_id(true);
 
 if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager") {
-    require "bank_stats.php";
-} else {
-    header("Location: staff-login.php?message=You are not authorized to access this page.");
-    exit;
+  define('749gl8balFjd0pdu90129%12LBUX33', true);
+  require "bank_stats.php";
+}else {
+  header("Location: staff-login.php?message=You are not authorized to access this page.");
+  exit;
 }
 
 $sum_of_transaction = new TransactionsStats;
@@ -19,7 +20,7 @@ $sum_of_transaction = new TransactionsStats;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin | Silver Bank</title>
     <link rel="stylesheet" href="style-admin-index.css">
     <link rel="shortcut icon" href="../Assets/bank-logo-index.svg" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -105,6 +106,7 @@ $sum_of_transaction = new TransactionsStats;
   window.addEventListener('mousemove', activityDetected);
   window.addEventListener('keydown', activityDetected);
   window.addEventListener('click', activityDetected);
+  window.addEventListener('touchstart', activityDetected);
 
 //Function to toggle the navigation bar on small screens
 function toggleNav() {

@@ -15,7 +15,7 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = $_ENV["EMAIL_PORT"];
 
-    $mail->setFrom($_ENV["EMAIL_SENDER"], 'Your Name');
+    $mail->setFrom($_ENV["EMAIL_SENDER"], 'Silver Bank');
 } catch (Exception $e) {
     echo "Mailer configuration error: {$mail->ErrorInfo}";
 }

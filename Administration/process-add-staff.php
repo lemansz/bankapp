@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Rollback transaction if any error occurs
         $conn->rollback();
         error_log("Error: " . $e->getMessage());
-        die("An error occured please check your internet connection and try again.");
+        header("Location: add-staff.php?message=An error occured please check your internet connection and try again.");
     } finally {
         // Close the statement
         if (isset($stmt)) {

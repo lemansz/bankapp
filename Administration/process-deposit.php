@@ -66,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if ($update_recipient_balance_stmt->affected_rows > 0){
         $deposit->record_deposit();
         $update_recipient_balance_stmt->close();
-        session_regenerate_id(true);
         header("Location: staff-cashier.php?message= Deposit of ₦$str_deposit_amount was successful!");
         exit;
     }

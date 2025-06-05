@@ -2,7 +2,6 @@
  session_start();
 
  if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] === 'Cashier') {
-    
     session_regenerate_id(true);
     require dirname(__FILE__) . '/../db.php';
 
@@ -21,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashier</title>
+    <title>Cashier | Silver Bank</title>
     <link rel="shortcut icon" href="../Assets/bank-logo-index.svg" type="image/x-icon">
     <link rel="stylesheet" href="style-staff-cashier.css">
 </head>
@@ -121,7 +120,7 @@
   window.addEventListener('mousemove', activityDetected);
   window.addEventListener('keydown', activityDetected);
   window.addEventListener('click', activityDetected);
-
+  window.addEventListener('touchstart', activityDetected);
 </script>
 
 <script src="staff-cashier-message.js"></script>

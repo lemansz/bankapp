@@ -1,9 +1,9 @@
 <?php
  session_start();
- session_regenerate_id(true);
+
  
  if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager") {
-     require "bank_stats.php";
+    
  } else {
      header("Location: staff-login.php?message=You are not authorized to access this page.");
      exit;
@@ -188,6 +188,7 @@ function activityDetected() {
 window.addEventListener('mousemove', activityDetected);
 window.addEventListener('keydown', activityDetected);
 window.addEventListener('click', activityDetected);
+window.addEventListener('touchstart', activityDetected);
 </script>
 </body>
 </html>

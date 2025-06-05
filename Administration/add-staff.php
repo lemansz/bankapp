@@ -1,9 +1,9 @@
 <?php
 session_start();
-session_regenerate_id(true);
+
 
 if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager") {
-    require "bank_stats.php";
+    
 } else {
     header("Location: staff-login.php?message=You are not authorized to access this page.");
     exit;
@@ -43,6 +43,7 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
         padding-left: 2rem;
         border-radius: 0.75rem;
         background-color: rgb(240, 240, 240);
+        width: 23rem;
     }
     input 
     {
@@ -52,6 +53,11 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
         border: 1px solid hsl(0, 0%, 80%);
         margin-bottom: 6px;
         margin-top: 6px;
+    }
+    input[type="text"], 
+    input[type="email"], 
+    input[type="number"] {
+        width: 300px; 
     }
     select{
         border-color: #333;
@@ -77,15 +83,26 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
         color: red;
     }
     .transaction-message{
+    position: fixed;
+    top: 4.5rem; /* below navbar */
+    left: 50%;
+    transform: translateX(-50%);
     width: 20.75rem;
-    height: 6.25rem;
+    height: auto;
+    min-height: 3.5rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: rgba(0, 128, 0, 0.153);
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #1ca34a;
+    color: white;
+    margin-left: 0;
+    margin-right: 0;
     padding-top: 0.6rem;
     padding-bottom: 1rem;
+    z-index: 2000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .hamburger {
     display: none;
@@ -97,12 +114,13 @@ if (isset($_SESSION['staff_id']) && $_SESSION['staff_role'] == "Branch Manager")
 .dismiss-button{
     border-radius: 0.5rem;
     border: 1px solid hsl(0, 0%, 80%);
-    padding: 0.60rem;
+    /* padding: 0.4rem 1.2rem; */
     font-size: large;
     background-color: white;
-    float: right;
-    margin-right: 0.5rem;
+    margin: 0.5rem auto 0 auto;
     cursor: pointer;
+    width: auto;
+    display: block;
 }
 
 .dismiss-button:hover{
@@ -288,6 +306,7 @@ h2
             <br>
             <select name="staff-role" id="staff-role">
                 <option value="Branch Manager">Branch Manager</option>
+                <option value="Customer Service Representative">Customer Service Representative</option>
                 <option value="Cashier">Cashier</option>
             </select>
         </label>
@@ -412,6 +431,7 @@ function activityDetected() {
 window.addEventListener('mousemove', activityDetected);
 window.addEventListener('keydown', activityDetected);
 window.addEventListener('click', activityDetected);
+window.addEventListener('touchstart', activityDetected);
 </script>
 </body>
 </html>

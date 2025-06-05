@@ -1,0 +1,188 @@
+  @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Parkinsans:wght@300..800&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Stylish&family=Varela&display=swap');
+    *{
+        font-family: 'Roboto', sans-serif;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+         font-style: normal;
+    }
+    body
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+    form{
+        padding-right: 2rem;
+        padding-top: 2rem;
+        padding-left: 2rem;
+        border-radius: 0.75rem;
+        background-color: rgb(240, 240, 240);
+        width: 23rem;
+    }
+    input 
+    {
+        padding: 1rem;
+        border-radius: 4px;
+        border: none;
+        border: 1px solid hsl(0, 0%, 80%);
+        margin-bottom: 6px;
+        margin-top: 6px;
+    }
+    input[type="text"], 
+    input[type="email"], 
+    input[type="number"] {
+        width: 300px; 
+    }
+    select{
+        border-color: #333;
+    }
+    #submit{
+        font-family: "Roboto", serif;
+        font-weight: 400;
+        font-style: normal;
+        width: 100px;
+        transition: background-color 0.5s ease-in-out;
+    }
+
+    #submit:active{
+        background-color: green;
+        color: white;
+    }
+
+    #submit:hover{
+        border-color: #333;
+    }
+    .error-message
+    {
+        color: red;
+    }
+    .transaction-message{
+    width: 20.75rem;
+    height: 6.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 128, 0, 0.153);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.6rem;
+    padding-bottom: 1rem;
+}
+.hamburger {
+    display: none;
+}
+.transaction-message p {
+    text-align: center;
+}
+
+.dismiss-button{
+    border-radius: 0.5rem;
+    border: 1px solid hsl(0, 0%, 80%);
+    padding: 0.60rem;
+    font-size: large;
+    background-color: white;
+    float: right;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.dismiss-button:hover{
+    border-color: #333;
+}
+.dismiss-button:active{
+   background-color: hsl(116, 49%, 63%);
+}
+
+.topnav{
+    background-color: silver;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: block;
+}
+.topnav a {
+    position: relative;
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover{
+    background-color: hsl(0, 0%, 70%);;
+    color: black;
+}
+a img {
+    position: absolute;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 100%; /* Ensure the body takes full width */
+        padding: 0;
+        margin: 0;
+    }
+
+    form {
+        width: 90%; 
+        max-width: 500px;
+        padding: 1rem;
+        margin: 0 auto; 
+    }
+  
+    input[type="text"], 
+    input[type="email"], 
+    input[type="number"] {
+        width: 100%; 
+    }
+
+    input[type="radio"] {
+        width: auto;
+    }
+
+    
+    .hamburger {
+        display: block;
+    }
+
+    /* Responsive navigation bar */
+    .topnav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: silver;
+        padding: 10px;
+    }
+    .topnav a {
+        display: none; /* Hide links by default */
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+    .topnav a img {
+        margin-left: 0.2rem;
+    }
+    .topnav .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .topnav.active a {
+        display: block; /* Show links when active */
+    }
+}
+
+
+h2
+{
+    margin-top: 5rem;
+}

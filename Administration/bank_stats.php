@@ -1,5 +1,10 @@
 <?php
 
+if (!defined('749gl8balFjd0pdu90129%12LBUX33')) {
+    http_response_code(403);
+    exit('Forbidden');
+}
+
 require dirname(__FILE__) . '/../db.php';
 
 class UsersStats

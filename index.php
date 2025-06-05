@@ -66,7 +66,7 @@ function greet (){
         <i id="toggleBalance" class="fa fa-eye-slash"></i>
         <br>
         <div class="transaction_history" id="transaction_history">
-           <button class="history"><a href="transaction-history-chart.php" target="_blank">History</a></button> <br> <?php $history->fetch_transaction_history(); ?>
+           <button class="history"><a href="transaction-history-chart.php">History</a></button> <br> <?php $history->fetch_transaction_history(); ?>
         </div>
     </div>
     <script>
@@ -605,7 +605,7 @@ window.onload = function() {
     window.addEventListener('mousemove', activityDetected);
     window.addEventListener('keydown', activityDetected);
     window.addEventListener('click', activityDetected);
-
+    window.addEventListener('touchstart', activityDetected);
 </script>
 <?php else: ?>
     <?= header("Location: landing-page.html"); exit; ?>

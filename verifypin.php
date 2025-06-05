@@ -38,6 +38,9 @@
 
   $stmt->close();
 
+} else {
+  header("Location: index.php");
+  exit();
 }
 
 function clean_input($data){

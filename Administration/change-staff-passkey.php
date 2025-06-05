@@ -2,7 +2,6 @@
 
  session_start();
 
- 
  if (!isset($_SESSION['staff_id']))
  {
      die("Unauthorized access.");
@@ -223,6 +222,23 @@ form.addEventListener('submit', (e) => {
     }
 });
 </script>
-
+<script src="check-staff-session.js"></script>
+<script>
+let activityTimeout;
+function sendActivityUpdate() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "check-staff-session.php?update=1&t=" + new Date().getTime(), true);
+    xhr.send();
+}
+function activityDetected() {
+    clearTimeout(activityTimeout);
+    sendActivityUpdate();
+    activityTimeout = setTimeout(() => {}, 60000);
+}
+window.addEventListener('mousemove', activityDetected);
+window.addEventListener('keydown', activityDetected);
+window.addEventListener('click', activityDetected);
+window.addEventListener('touchstart', activityDetected);
+</script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-session_regenerate_id(true);
+
 if (!isset($_SESSION['staff_id']) || $_SESSION['staff_role'] != "Branch Manager") {
     header("Location: staff-login.php?message=You are not authorized to access this page.");
     exit;
 }
 
-require "bank_stats.php";
+
 
 $found_transaction = false;
 
@@ -246,7 +246,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
                 <th>Account no (Sender)</th>
                 <th>Amount</th>
                 <th>Network Provider</th>
-                <th>Date</th>
+                <th>Date & Time</th>
             </tr>
 
             <tr>
@@ -334,6 +334,7 @@ function activityDetected() {
 window.addEventListener('mousemove', activityDetected);
 window.addEventListener('keydown', activityDetected);
 window.addEventListener('click', activityDetected);
+window.addEventListener('touchstart', activityDetected);
 </script>
 </body>
 </html>

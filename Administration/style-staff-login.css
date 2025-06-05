@@ -12,22 +12,19 @@ body{
     font-style: normal;
 }
 form{
-    width: 15rem;
     border-radius: 8px;
     transition: border-color 0.3s ease;
     padding-left: 2rem;
     padding-right: 3rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    width: 200px;
+    width: 180px;
     background-color: rgb(240, 240, 240);
 }
 input{
     padding: 1rem;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    
-      
+    border: 1px solid #ccc;   
 }
 input:hover{
     border-color: #333;

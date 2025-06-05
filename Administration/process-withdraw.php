@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         if ($update_recipient_balance_stmt->affected_rows > 0){
             $withdraw->record_withdraw();
             $update_recipient_balance_stmt->close();
-            session_regenerate_id(true);
             header("Location: staff-cashier.php?message= Withdrawal of ₦$str_withdraw_amount was successful!");
             exit;
         }

@@ -78,13 +78,13 @@ public function transaction_history_cards()
                 echo "<h3 style='margin: 0; color: $bgColor;'>Deposit</h3>";
                 echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
                 echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
-                echo "<p><strong>Date:</strong> {$row['transaction_date']}</p>";
+                echo "<p><strong>Date & Time:</strong> {$row['transaction_date']}</p>";
                 break;
 
             case 'Withdraw':
                 echo "<h3 style='margin: 0; color: $bgColor;'>Withdrawal</h3>";
                 echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
-                echo "<p><strong>Date:</strong> {$row['transaction_date']}</p>";
+                echo "<p><strong>Date & Time:</strong> {$row['transaction_date']}</p>";
                 echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
 
                 break;
@@ -102,7 +102,7 @@ public function transaction_history_cards()
                     echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
 
                 }
-                echo "<p><strong>Date:</strong> {$row['transaction_date']}</p>";
+                echo "<p><strong>Date & Time:</strong> {$row['transaction_date']}</p>";
                 break;
 
             case 'Airtime':
@@ -110,7 +110,7 @@ public function transaction_history_cards()
                 echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
                 echo "<p><strong>Network:</strong> {$row['network_provider']}</p>";
                 echo "<p><strong>Beneficiary no:</strong> {$row['beneficiary_phone_no']}</p>";
-                echo "<p><strong>Date:</strong> {$row['transaction_date']}</p>";
+                echo "<p><strong>Date & Time:</strong> {$row['transaction_date']}</p>";
                 echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
 
                 break;
@@ -121,7 +121,7 @@ public function transaction_history_cards()
                 echo "<p><strong>Network:</strong> {$row['network_provider']}</p>";
                 echo "<p><strong>Bundle:</strong> {$row['data_bundle']}</p>";
                 echo "<p><strong>Beneficiary no:</strong> {$row['beneficiary_phone_no']}</p>";
-                echo "<p><strong>Date:</strong> {$row['transaction_date']}</p>";
+                echo "<p><strong>Date & Time:</strong> {$row['transaction_date']}</p>";
                 echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
                 break;
 
