@@ -101,7 +101,7 @@ function clean_input($data){
                 <th>Beneficiary</th>
                 <th>Account no</th>
                 <th>Amount</th>
-                <th>Date</th>
+                <th>Date & Time</th>
             </tr>
 
             <tr>
@@ -136,7 +136,7 @@ function clean_input($data){
                     <th>Beneficiary</th>
                     <th>Account no</th>
                     <th>Amount</th>
-                    <th>Date</th>
+                    <th>Date & Time</th>
                 </tr>
 
                 <tr>
@@ -171,7 +171,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
                 <th>Account no (Sender)</th>
                 <th>Accoun no (Beneficiary)</th>
                 <th>Amount</th>
-                <th>Date</th>
+                <th>Date & Time</th>
             </tr>
 
             <tr>
@@ -207,7 +207,7 @@ document.getElementById('transaction-info-block').style.display = 'none';
                 <th>Account no (Sender)</th>
                 <th>Amount</th>
                 <th>Network Provider</th>
-                <th>Date</th>
+                <th>Date & Time</th>
             </tr>
 
             <tr>
