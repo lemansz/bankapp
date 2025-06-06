@@ -26,7 +26,7 @@
         die ("Invalid account no.");
     } 
 
-    if (strlen($remark) > 100){
+    if (strlen($remark) > 65){
         die ("Remark is too long.");
     }
 

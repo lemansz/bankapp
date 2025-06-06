@@ -109,7 +109,7 @@ function greet (){
             </label>
             <br><br>
             <label for="remark" class="transfer-inputs">
-                <input type="textarea" placeholder="Remark(optional)" name="remark" maxlength="100">
+                <input type="textarea" placeholder="Remark(optional)" name="remark" maxlength="60">
             </label>
             <br><br>
             <input type="hidden" name="user-balance" value="<?= htmlspecialchars($user['account_balance'])?>">

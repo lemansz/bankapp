@@ -94,6 +94,7 @@ public function transaction_history_cards()
                     echo "<h3 style='margin: 0; color: $bgColor;'>Sent</h3>";
                     echo "<p><strong>Amount:</strong> ₦{$this->addCommas($row['transaction_amount'])}</p>";
                     echo "<p><strong>Beneficiary:</strong> {$row['beneficiary_name']} | {$row['beneficiary_account_no']}</p>";
+                    echo "<p><strong>Remark:</strong> {$row['transaction_remark']}</p>";
                     echo "<p><strong>Transaction ID:</strong> {$row['transaction_id']}</p>";
                 } else {
                     echo "<h3 style='margin: 0; color: $bgColor;'>Received</h3>";
