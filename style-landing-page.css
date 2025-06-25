@@ -21,17 +21,24 @@ body {
 header {
     background: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    padding: 18px 0;
+    padding: 0;
     border-bottom: 3px solid #43a047;
+    min-height: 72px;
+    height: 72px;
 }
 header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 72px;
 }
 .logo {
-    height: 68px;
+    height: 100px;
+    max-height: 250px;
+    object-fit: contain;
+    display: block;
 }
+
 nav a {
     color: #1b5e20;
     text-decoration: none;
@@ -617,4 +624,23 @@ footer {
 .service.animate {
     opacity: 1 !important;
     transform: none !important;
+}
+
+@media screen and (max-width: 600px) {
+ .logo-box {
+    background-image: url('Assets/bank-logo-index-mobile.svg');
+    background-size: contain;
+    height: 150px;
+
+ }
+}
+
+@media (max-width: 600px) {
+    .logo-img {
+        width: 80px !important;
+        height: 40px !important;
+        max-width: 80px !important;
+        max-height: 40px !important;
+        object-fit: contain;
+    }
 }

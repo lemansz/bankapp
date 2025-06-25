@@ -23,7 +23,6 @@ form{
     padding-bottom: 0.6rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-top: 3rem;
     border-radius: 0.5rem;
 }
 h3{
@@ -86,5 +85,45 @@ transition: background-color 0.5s ease-in-out;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 2;
+}
+.logo-box{
+    width: 100%;
+    max-width: 350px;
+    min-width: 120px;
+    height: 120px;
+    margin: 0 auto 0.8rem auto;
+    /* Use <img> for logo, not background-image for reliability */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-box img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+ .logo-box {
+    width: 95vw;
+    min-width: 100px;
+    height: 90px;
+ }
+ .logo-box img {
+    max-width: 110px;
+    height: 60px;
+    content: url('Assets/bank-logo-index-mobile.svg');
+ }
+ body {
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    height: auto;
+ }
+ form {
+    margin-top: 1.5rem;
+ }
 }
 

@@ -50,12 +50,26 @@ input{
     background-color: green;
     color: white;
 }
-.bank-logo{
-    margin-left: auto;
-    margin-right: auto;
+
+.logo-box{
+    width: 100%;
     height: 200px;
+    background-image: url('./Assets/bank-logo-index.svg');
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 600px) {
+ .logo-box {
+    background-image: url('Assets/bank-logo-index-mobile.svg');
+ }
+ body {
+    align-items: center; /* center horizontally */
+    justify-content: flex-start; /* push up vertically */
+    padding-top: 1.5rem;
+    height: auto;
+ }
+}
 .message{
     width: 20.75rem;
     height: 6.25rem;
@@ -91,9 +105,9 @@ input{
 </style>
 </head>
 <body>
-<div class="bank-logo">
-    <img src="Assets/bank-logo-index.svg" alt="Silver Bank Logo" class="logo">
-</div>
+    <div class="logo-box">
+        
+    </div>
     <?php  if (isset($_GET['message'])) {
     $message = htmlspecialchars($_GET['message'], ENT_QUOTES, 'UTF-8');
     echo "<div class='message' id='message'>

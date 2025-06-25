@@ -9,11 +9,22 @@
     <link rel="shortcut icon" href="Assets/bank-logo-index.svg" type="image/x-icon">
 </head>
 <body>
-<div style="margin-left: auto; margin-right: auto; height: 100px; margin-bottom: 0.8rem;">
-    <img src="Assets/bank-logo-index.svg" alt="Silver Bank Logo" class="logo">
-</div>
-
-
+    <div class="logo-box">
+        <img src="Assets/bank-logo-index.svg" alt="Silver Bank Logo" id="main-logo">
+    </div>
+<script>
+// Switch logo image for mobile view
+function updateLogoForScreen() {
+  const logo = document.getElementById('main-logo');
+  if (window.innerWidth <= 600) {
+    logo.src = 'Assets/bank-logo-index-mobile.svg';
+  } else {
+    logo.src = 'Assets/bank-logo-index.svg';
+  }
+}
+window.addEventListener('DOMContentLoaded', updateLogoForScreen);
+window.addEventListener('resize', updateLogoForScreen);
+</script>
 <form action="process-signup.php" method="post" id="regForm" novalidate>
     <label for="surname">
         <input type="text" placeholder="Surname" name="surname" id="surname"> 

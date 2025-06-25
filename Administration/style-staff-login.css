@@ -100,3 +100,19 @@ a{
     background-repeat: no-repeat;
 
 }
+
+@media screen and (max-width: 600px) {
+ .logo-box {
+    background-image: url('../Assets/bank-logo-index-mobile.svg');
+ }
+ body {
+    align-items: center;
+    justify-content: flex-start; 
+    padding-top: 1.5rem;
+    height: auto;
+ }
+ form {
+    margin-top: 1.5rem;
+    width: 200px; 
+ }
+}

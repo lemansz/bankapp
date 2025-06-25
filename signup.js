@@ -28,48 +28,55 @@ let isValid = true;
 
 if (surname.trim() === "") {
     isValid = false;
-    surnameError.textContent = "Surname is required.";
+    surnameError.textContent = "Please enter your surname.";
+} else if (surname.includes(" ")) {
+    isValid = false;
+    surnameError.textContent = "No spaces allowed in Surname.";
 } else if (!regexName.test(surname)){
     isValid = false;
-    surnameError.textContent = "Surname must contain only letters.";
+    surnameError.textContent = "No special characters allowed in Surname.";
 }
 
 if (firstName.trim() === "") {
     isValid = false;
-    firstNameError.textContent = "First name is required.";
+    firstNameError.textContent = "Please enter your first name.";
+} else if (firstName.includes(" ")) {
+    isValid = false;
+    firstNameError.textContent = "No spaces allowed in First name.";
 } else if (!regexName.test(firstName)){
-    firstNameError.textContent = "First name must contain only letters.";
+    isValid = false;
+    firstNameError.textContent = "No special characters allowed in First name.";
 }
 
 if (email === "") {
     isValid = false;
-    emailError.textContent = "Email is required.";
+    emailError.textContent = "Please enter your email address.";
 } else if (!regexEmail.test(email)){
     isValid = false;
-    emailError.textContent = "Invalid email."
+    emailError.textContent = "Please enter a valid email address.";
 }
 
 if (phoneNumber === ""){
     isValid = false;
-    phoneNumberError.textContent = "Phone number is required.";
+    phoneNumberError.textContent = "Please enter your phone number.";
 } else if (!regexPhoneNumber.test(phoneNumber)) {
     isValid = false;
-    phoneNumberError.textContent = "Invalid phone number."
+    phoneNumberError.textContent = "Phone number must be 11 digits.";
 }
 
 if (password === "" ) {
     isValid = false;
-    passwordError.textContent = "Password is required.";
+    passwordError.textContent = "Please enter a password.";
 } else if (password.length < 6) {
     isValid = false;
-    passwordError.textContent = "Password must be at least 6 characters.";
+    passwordError.textContent = "Password must be at least 6 characters long.";
 } else if (!/\d/.test(password)) {
     isValid = false;
-    passwordError.textContent = "Password must contain at least 1 digit."
+    passwordError.textContent = "Password must include at least one number.";
 }
 if (confirmPassword !== password) {
     isValid = false;
-    confirmPasswordError.textContent = "Password does not match";
+    confirmPasswordError.textContent = "Passwords do not match.";
 }
 
 return isValid;
