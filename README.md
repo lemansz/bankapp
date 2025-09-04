@@ -23,15 +23,7 @@ Silver Bank is a simulated banking application built using HTML, CSS, JavaScript
 - **User & Transaction Search:** Admins can find users and inspect transactions.
 - **Forgot Passkey:** Staff members have a forgot passkey feature for account recovery.
 - **Session Management:** Secure sessions for staff and admins.
-### Administrative Side
- - **Dashboard:** Admins can view total transactions, airtime purchases, data purchases, and breakdowns by ISP.
- - **Staff Management:** Admins can add staff members such as cashiers and customer service representatives.
- - **Cashier Role:** Cashiers can simulate depositing money for customers.
- - **Customer Service:** Staff can view customer complaints and respond via email.
- - **User & Transaction Search:** Admins can find users and inspect transactions.
- - **Forgot Passkey:** Staff members have a forgot passkey feature for account recovery.
- - **Session Management:** Secure sessions for staff and admins.
-
+- 
 ## Technologies Used
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** PHP
@@ -43,12 +35,9 @@ Silver Bank is a simulated banking application built using HTML, CSS, JavaScript
 3. Configure database credentials in `db.php`.
 4. Access the application via your local server.
 
-## Contact
-For any issues or suggestions, please use the contact form on the site.
-
 ---
 
-*This project is for educational and simulation purposes only.*
+*This was to demonstrate my knowledge in a bootcamp. It is not a real Bank App*
 ## Security & Validation
  - All user and staff inputs are validated both client-side (JavaScript) and server-side (PHP).
  - Passwords and staff passkeys are securely hashed before storage.
