@@ -37,7 +37,6 @@ Silver Bank is a simulated banking application built using HTML, CSS, JavaScript
 
 ---
 
-*This was to demonstrate my knowledge in a bootcamp. It is not a real Bank App*
 ## Security & Validation
  - All user and staff inputs are validated both client-side (JavaScript) and server-side (PHP).
  - Passwords and staff passkeys are securely hashed before storage.
@@ -68,4 +67,5 @@ Silver Bank is a simulated banking application built using HTML, CSS, JavaScript
 
 ## Usage Notes
  - The project is intended for educational and simulation purposes only.
+ - The purpose of this proeject was to demonstrate my knowledge in a bootcamp. It is not a real Bank App*
  - For local development, use XAMPP or similar to run PHP and MySQL.
